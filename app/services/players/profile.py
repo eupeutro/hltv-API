@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from lxml import etree
 
+
 from app.services.base import HLTVBase
 from app.utils.utils import trim 
 from app.utils.xpath import Players
@@ -20,7 +21,7 @@ class HLTVPlayerProfile (HLTVBase):
     #URL: str = f"https://www.hltv.org/player/{player_id}/-"
     
     def __post_init__(self) -> None:
-        url = f"https://www.hltv.org/player/{self.player_id}/-"
+        url = f"https://www.hltv.org/player/{self.player_id}/who"
         HLTVBase.__init__(self)
         self.URL = url
         self.page = self.request_url_page()
@@ -32,6 +33,7 @@ class HLTVPlayerProfile (HLTVBase):
         Returns:
             dict: Player profile data.
     """
+     
      self.response["id"] = self.player_id
      self.response["nickName"] = self.get_text_by_xpath(Players.Profile.NICKNAME)
      self.response["rating"] = self.get_text_by_xpath(Players.Profile.RATING)
@@ -41,6 +43,5 @@ class HLTVPlayerProfile (HLTVBase):
      self.response["currentTeam"] = self.get_text_by_xpath(Players.Profile.CURRENT_TEAM)
      self.response["currentTeamurl"] = f"https://www.hltv.org/{self.get_text_by_xpath(Players.Profile.CURRENT_TEAM_URL)}"
      
-     html_string = etree.tostring(self.page, pretty_print=True).decode("utf-8")
-     #print(html_string)
+    
      return self.response
