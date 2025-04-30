@@ -54,6 +54,14 @@ class HLTVBase:
         bsoup: BeautifulSoup = self.request_url_bsoup()
         return self.convert_bsoup_to_page(bsoup=bsoup)
     
+    def get_all_by_xpath(self,xpath: str) -> list[str]:
+        try:
+            elements = self.page.xpath(xpath)
+            return [trim(e) for e in elements if e]
+        except Exception as e :
+            raise ValueError(f"Error at xpath data extract'{xpath}': {e}") from e
+            return []
+    
     def get_text_by_xpath(
             self,
             xpath: str,

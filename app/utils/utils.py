@@ -12,8 +12,8 @@ def extract_from_url(hltv_url: Optional[str], element: str) -> Optional[str]:
    if not hltv_url:
      return None
    regex = (
-        r"https?://(?:www\.)?hltv\.org/"
-        r"player/(?P<id>\d+)"
+        r"(?:https?://(?:www\.)?hltv\.org)?"
+        r"/player/(?P<id>\d+)"
         r"(?:/(?P<nickname>[\w\-]+))?"
     )
    match = re.match(regex,hltv_url)

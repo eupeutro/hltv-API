@@ -1,0 +1,1 @@
+from app.schemas.players.profile import PlayerProfile as PlayerProfile

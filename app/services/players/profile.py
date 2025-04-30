@@ -3,7 +3,7 @@ from lxml import etree
 
 
 from app.services.base import HLTVBase
-from app.utils.utils import trim 
+from app.utils.utils import trim,extract_from_url
 from app.utils.xpath import Players
 
 @dataclass
@@ -18,7 +18,7 @@ class HLTVPlayerProfile (HLTVBase):
         URL (str): Formatted HLTV profile URL based on player ID.
     """
     player_id: str
-    #URL: str = f"https://www.hltv.org/player/{player_id}/-"
+
     
     def __post_init__(self) -> None:
         url = f"https://www.hltv.org/player/{self.player_id}/who"
@@ -33,15 +33,17 @@ class HLTVPlayerProfile (HLTVBase):
         Returns:
             dict: Player profile data.
     """
-     
-     self.response["id"] = self.player_id
-     self.response["nickName"] = self.get_text_by_xpath(Players.Profile.NICKNAME)
-     self.response["rating"] = self.get_text_by_xpath(Players.Profile.RATING)
+    
+     self.response["id"] = extract_from_url(self.get_text_by_xpath(Players.Profile.URL), "id")
+     self.response["url"] = self.get_text_by_xpath(Players.Profile.URL)
+     self.response["nick_name"] = self.get_text_by_xpath(Players.Profile.NICKNAME)
      self.response["name"] = self.get_text_by_xpath(Players.Profile.NAME)
      self.response["age"] = self.get_text_by_xpath(Players.Profile.AGE)
      self.response["nationality"] = self.get_text_by_xpath(Players.Profile.NATIONALITY)
-     self.response["currentTeam"] = self.get_text_by_xpath(Players.Profile.CURRENT_TEAM)
-     self.response["currentTeamurl"] = f"https://www.hltv.org/{self.get_text_by_xpath(Players.Profile.CURRENT_TEAM_URL)}"
-     
+     self.response["rating"] = self.get_text_by_xpath(Players.Profile.RATING)
+     self.response["current_team"] = self.get_text_by_xpath(Players.Profile.CURRENT_TEAM)
+     self.response["current_team_url"] = f"https://www.hltv.org/{self.get_text_by_xpath(Players.Profile.CURRENT_TEAM_URL)}"
+     self.response["image_url"] = self.get_text_by_xpath(Players.Profile.IMAGE_URL)
+     self.response["social_media"] = self.get_all_by_xpath(Players.Profile.SOCIAL_MEDIA)
     
      return self.response
