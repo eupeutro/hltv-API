@@ -18,3 +18,7 @@ def extract_from_url(hltv_url: Optional[str], element: str) -> Optional[str]:
     )
    match = re.match(regex,hltv_url)
    return match.groupdict().get(element) if match else None
+
+def extract_nickname_from_name(full_name: str) -> Optional[str]:
+    match = re.search(r"'([^']+)'", full_name)
+    return match.group(1) if match else None

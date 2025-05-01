@@ -10,7 +10,7 @@ class AuditMixin(BaseModel):
 class HLTVBaseModel(BaseModel):
     model_config = ConfigDict(alias_generator=to_camel, populate_by_name= True)
     
-    @field_validator("age", mode = "before", check_fields= True)
+    @field_validator("age", mode = "before", check_fields= False)
     def parse_age(cls, v: Union[str, int]) -> Optional[int]:
         if isinstance(v, int):
             return v

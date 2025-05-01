@@ -35,8 +35,7 @@ class HLTVPlayerProfile (HLTVBase):
     """
     
      self.response["id"] = extract_from_url(self.get_text_by_xpath(Players.Profile.URL), "id")
-     self.response["url"] = self.get_text_by_xpath(Players.Profile.URL)
-     self.response["nick_name"] = self.get_text_by_xpath(Players.Profile.NICKNAME)
+     self.response["nickname"] = self.get_text_by_xpath(Players.Profile.NICKNAME)
      self.response["name"] = self.get_text_by_xpath(Players.Profile.NAME)
      self.response["age"] = self.get_text_by_xpath(Players.Profile.AGE)
      self.response["nationality"] = self.get_text_by_xpath(Players.Profile.NATIONALITY)
@@ -44,6 +43,7 @@ class HLTVPlayerProfile (HLTVBase):
      self.response["current_team"] = self.get_text_by_xpath(Players.Profile.CURRENT_TEAM)
      self.response["current_team_url"] = f"https://www.hltv.org/{self.get_text_by_xpath(Players.Profile.CURRENT_TEAM_URL)}"
      self.response["image_url"] = self.get_text_by_xpath(Players.Profile.IMAGE_URL)
+     self.response["url"] = self.get_text_by_xpath(Players.Profile.URL)
      self.response["social_media"] = self.get_all_by_xpath(Players.Profile.SOCIAL_MEDIA)
     
      return self.response

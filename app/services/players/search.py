@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from xml.etree import ElementTree
+import requests
 
 from app.services.base import HLTVBase
-from app.utils.utils import extract_from_url, trim
-from app.utils.xpath import Players
+
+
 
 
 @dataclass
@@ -11,17 +11,46 @@ class HLTVPlayerSearch(HLTVBase):
     query: str
 
     def __post_init__(self) -> None:
-        url = f"https://www.hltv.org/search?query={self.query}"
         HLTVBase.__init__(self)
-        self.URL = url
-        self.page = self.request_url_page()
+        self.URL = f"https://www.hltv.org/search?term={self.query}"
+        self.response["query"] = self.query
+        self.page_data = self.__fetch_json()
+        
     
+
+    def __fetch_json(self) -> dict:
+        res = requests.get(self.URL, headers={"User-Agent": "Mozilla/5.0"})
+        res.raise_for_status()
+        return res.json()
+
     def __parse_search_results(self) -> list:
 
-        search_results: list[ElementTree] = self.page.xpath(Players.Search.RESULTS)
-        results = []
+        results = []    
 
-        for result in search_results:
-            id = extract_from_url(result.xpath(Players.Search.URL), "id")
-            url= f"https://www.hltv.org/{result.xpath(Players.Search.URL)}"
+        players = self.page_data[0].get("players", [])
+
+
+        for player in players:
+            id = player.get("id")
             name = trim(result.xpath(Players.Search.NAME))
+            nickname = extract_nickname_from_name(name)
+            nationality = trim(result.xpath(Players.Search.NATIONALITY))
+            url= f"https://www.hltv.org/{result.xpath(Players.Search.URL)}"
+
+            results.append({
+
+                "id": id,
+                "name": name,
+                "nickName": nickname,
+                "nationality": nationality,
+                "url": url
+            })
+        
+        return results
+        
+    def search_players(self) -> dict:
+
+        self.response["query"] = self.query
+        self.response["results"] = self.__parse_search_results()
+
+        return self.response
