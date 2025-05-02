@@ -20,12 +20,6 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 app.add_middleware(SlowAPIMiddleware)
 app.include_router(api_router)
 
-
-@app.get("/test")
-def test():
-    return{"message": "api working"}
-
-
 @app.get("/", include_in_schema=False)
 def docs_redirect():
     return RedirectResponse(url="/docs")
