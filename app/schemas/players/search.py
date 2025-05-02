@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 
 from pydantic import HttpUrl
 
@@ -11,8 +11,9 @@ class PlayerSearchResult(HLTVBaseModel):
     name: str
     nickname: str
     nationality: str
+    flag_url: HttpUrl
     url: HttpUrl
 
 class PlayerSearch(HLTVBaseModel,AuditMixin):
     query: str
-    results: list[PlayerSearchResult]
+    results: List[PlayerSearchResult]

@@ -1,8 +1,7 @@
 from dataclasses import dataclass
-import requests
 
 from app.services.base import HLTVBase
-
+from app.utils.utils import extract_country_name_from_flag_url
 
 
 
@@ -19,8 +18,7 @@ class HLTVPlayerSearch(HLTVBase):
     
 
     def __fetch_json(self) -> dict:
-        res = requests.get(self.URL, headers={"User-Agent": "Mozilla/5.0"})
-        res.raise_for_status()
+        res = self.make_request(self.URL)
         return res.json()
 
     def __parse_search_results(self) -> list:
@@ -32,17 +30,19 @@ class HLTVPlayerSearch(HLTVBase):
 
         for player in players:
             id = player.get("id")
-            name = trim(result.xpath(Players.Search.NAME))
-            nickname = extract_nickname_from_name(name)
-            nationality = trim(result.xpath(Players.Search.NATIONALITY))
-            url= f"https://www.hltv.org/{result.xpath(Players.Search.URL)}"
+            name = f"{player.get('firstName', '')} {player.get('lastName', '')}".strip()
+            nickname = player.get("nickName")
+            flag_url = player.get("flagUrl")
+            nationality = extract_country_name_from_flag_url(flag_url)
+            url= f"https://www.hltv.org/{player.get('location','')}"
 
             results.append({
 
-                "id": id,
+                "id": str(id),
                 "name": name,
-                "nickName": nickname,
+                "nickname": nickname,
                 "nationality": nationality,
+                "flag_url": flag_url,
                 "url": url
             })
         

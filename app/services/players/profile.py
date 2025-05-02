@@ -3,7 +3,7 @@ from lxml import etree
 
 
 from app.services.base import HLTVBase
-from app.utils.utils import trim,extract_from_url
+from app.utils.utils import trim,extract_from_url, extract_age
 from app.utils.xpath import Players
 
 @dataclass
@@ -37,7 +37,7 @@ class HLTVPlayerProfile (HLTVBase):
      self.response["id"] = extract_from_url(self.get_text_by_xpath(Players.Profile.URL), "id")
      self.response["nickname"] = self.get_text_by_xpath(Players.Profile.NICKNAME)
      self.response["name"] = self.get_text_by_xpath(Players.Profile.NAME)
-     self.response["age"] = self.get_text_by_xpath(Players.Profile.AGE)
+     self.response["age"] = extract_age(self.get_text_by_xpath(Players.Profile.AGE))
      self.response["nationality"] = self.get_text_by_xpath(Players.Profile.NATIONALITY)
      self.response["rating"] = self.get_text_by_xpath(Players.Profile.RATING)
      self.response["current_team"] = self.get_text_by_xpath(Players.Profile.CURRENT_TEAM)
@@ -46,4 +46,7 @@ class HLTVPlayerProfile (HLTVBase):
      self.response["url"] = self.get_text_by_xpath(Players.Profile.URL)
      self.response["social_media"] = self.get_all_by_xpath(Players.Profile.SOCIAL_MEDIA)
     
+
+    
+     
      return self.response
