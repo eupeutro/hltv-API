@@ -21,6 +21,8 @@ class HLTVPlayerProfile (HLTVBase):
 
     
     def __post_init__(self) -> None:
+        """ Initialize the HLTVPlayerProfile class."""
+
         url = f"https://www.hltv.org/player/{self.player_id}/who"
         HLTVBase.__init__(self)
         self.URL = url
@@ -31,7 +33,8 @@ class HLTVPlayerProfile (HLTVBase):
         Parses and returns the player's profile information.
 
         Returns:
-            dict: Player profile data.
+            dict: A dictionary containing the player's unique identifier, profile information, and the timestamp of when
+                the data was last updated.
     """
     
      self.response["id"] = extract_from_url(self.get_text_by_xpath(Players.Profile.URL), "id")

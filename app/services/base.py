@@ -14,10 +14,33 @@ from app.utils.utils import trim
 
 @dataclass
 class HLTVBase:
+    """
+    Base class for making HTTP requests to HLTV and extracting data from the web pages.
+
+    Args:
+        URL (str): The URL for the web page to be fetched.
+    Attributes:
+        response (dict): A dictionary to store the response data.
+    """
+
     URL: str = field(init = False)
     response: dict = field(default_factory= lambda: {}, init= False)
     
     def make_request(self,url: Optional[str] = None) -> Response:
+        """
+        Make an HTTP GET request to the specified URL.
+
+        Args:
+            url (str, optional): The URL to make the request to. If not provided, the class's URL
+                attribute will be used.
+
+        Returns:
+            Response: An HTTP Response object containing the server's response to the request.
+
+        Raises:
+            HTTPException: If there are too many redirects, or if the server returns a client or
+                server error status code.
+        """
         url = self.URL if not url else url
         scraper = cloudscraper.create_scraper()
         try:
@@ -43,18 +66,62 @@ class HLTVBase:
         return response
     
     def request_url_bsoup(self) -> BeautifulSoup:
+        """
+        Fetch the web page content and parse it using BeautifulSoup.
+
+        Returns:
+            BeautifulSoup: A BeautifulSoup object representing the parsed web page content.
+
+        Raises:
+            HTTPException: If there are too many redirects, or if the server returns a client or
+                server error status code.
+        """
+
         response: Response = self.make_request()
         return BeautifulSoup(markup=response.content, features="html.parser")
     
     @staticmethod
     def convert_bsoup_to_page(bsoup: BeautifulSoup) -> ElementTree:
+        """
+        Convert a BeautifulSoup object to an ElementTree.
+
+        Args:
+            bsoup (BeautifulSoup): The BeautifulSoup object representing the parsed web page content.
+
+        Returns:
+            ElementTree: An ElementTree representing the parsed web page content for further processing.
+        """
+
         return etree.HTML(str(bsoup))
     
     def request_url_page(self) -> ElementTree:
+        """
+        Fetch the web page content, parse it using BeautifulSoup, and convert it to an ElementTree.
+
+        Returns:
+            ElementTree: An ElementTree representing the parsed web page content for further
+                processing.
+
+        Raises:
+            HTTPException: If there are too many redirects, or if the server returns a client or
+                server error status code.
+        """
         bsoup: BeautifulSoup = self.request_url_bsoup()
         return self.convert_bsoup_to_page(bsoup=bsoup)
     
     def get_all_by_xpath(self,xpath: str) -> list[str]:
+        """
+    Extract all text elements from the web page using the specified XPath expression.
+
+    Args:
+        xpath (str): The XPath expression used to locate the desired elements on the web page.
+
+    Returns:
+        list[str]: A list of trimmed strings extracted from the elements found via the XPath expression.
+
+    Raises:
+        ValueError: If there is an error during XPath evaluation or element extraction.
+        """
         try:
             elements = self.page.xpath(xpath)
             return [trim(e) for e in elements if e]
@@ -125,5 +192,16 @@ class HLTVBase:
             return None
 
     def raise_exception_if_not_found(self, xpath: str):
+        """
+    Raise an HTTP 404 exception if no element is found for the given XPath expression.
+
+    Args:
+        xpath (str): The XPath expression used to search for content on the page.
+
+    Raises:
+        HTTPException: Raised with status code 404 if the XPath does not return any result,
+        indicating that the requested resource was not found or is invalid.
+        """
+
         if not self.get_text_by_xpath(xpath):
             raise HTTPException(status_code = 404, detail=f"Invalid request (url: {self.URL})")
