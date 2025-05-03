@@ -19,3 +19,6 @@ class Players:
         NAME = RESULTS + "/td/a/text()"
         URL = RESULTS +"/td/a/@href"
         NATIONALITY = RESULTS + "//img/@alt"
+
+    class Achievements:
+        ACHIEVEMENTS = "/table[@class = 'table-container achievement-table']/tbody/tr[@class='team']"
