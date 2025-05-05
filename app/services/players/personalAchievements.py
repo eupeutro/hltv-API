@@ -38,7 +38,14 @@ class HLTVPlayerPersonalAchievements(HLTVBase):
         major_winner_count = self.get_text_by_xpath(Players.personalAchievements.MAJOR_WINNER_COUNT)
         major_mvp_count = self.get_text_by_xpath(Players.personalAchievements.MAJOR_MVP_COUNT)
 
-        mvp_winner = self.get_text_by_xpath(Players.personalAchievements.MVP_WINNER).split('\n')[1:]
+        raw_mvp_winner = self.get_text_by_xpath(Players.personalAchievements.MVP_WINNER)
+        
+        if raw_mvp_winner:
+            mvp_winner = raw_mvp_winner.split('\n')[1:]
+        
+        else:
+            mvp_winner = []
+
         mvp_winner_count = self.get_text_by_xpath(Players.personalAchievements.MVP_WINNER_COUNT)
         
         return {
