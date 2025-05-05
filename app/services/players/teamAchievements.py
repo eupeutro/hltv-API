@@ -39,8 +39,6 @@ class HLTVPlayerTeamAchievements(HLTVBase):
                   one team achievement.
         """
         
-        
-        
         achievements = self.page.xpath(Players.teamAchievements.ROWS)
         
         player_achievements = []
@@ -76,6 +74,16 @@ class HLTVPlayerTeamAchievements(HLTVBase):
     
 
     def get_player_team_achievements(self) -> dict:
+        """
+        Retrieve the player's team achievement
+
+        Returns:
+            dict: A dictionary containing the player ID, number of achievements,
+                  and a list of structured achievement data.
+
+        """
+
+
         achievements = self.__parse_player_team_achievements()
 
         self.response["id"] = self.player_id
