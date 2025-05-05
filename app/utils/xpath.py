@@ -38,3 +38,9 @@ class Players:
         MVP_WINNER_COUNT = "//div[contains(@class, 'mvp-count')]//text()"
         MVP_WINNER = "//div[contains(@class, 'trophyHolder')]//span[contains(@title, 'MVP')]/@title"
 
+        class Trophies: 
+            TOURNAMENT_NAME = "//tr[contains(@class, 'trophy-row')]//div[contains(@class, 'trophy-event')]/a/text()"
+            TROPHY_IMG_URL = ""
+            TOURNAMENT_URL = ""
+            
+
