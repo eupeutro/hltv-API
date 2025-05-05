@@ -8,7 +8,7 @@ from app.utils.xpath import Players
 class HLTVPlayerTeamAchievements(HLTVBase):
     
     """
-    A class for extracting team achievements from a player
+    A class for extracting team achievements from a player.
 
     Attributes:
         playerd_id (str): The HLTV player ID
@@ -35,8 +35,8 @@ class HLTVPlayerTeamAchievements(HLTVBase):
         Parses the player's team achievements section from the HLTV profile.
 
         Returns:
-            list: A list of dictionaries, each containing infromation about 
-                  one team achievement.
+            list: A list of dictionaries, each containing information about 
+                  each team achievement.
         """
         
         achievements = self.page.xpath(Players.teamAchievements.ROWS)
