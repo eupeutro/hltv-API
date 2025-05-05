@@ -9,7 +9,7 @@ from app.utils.xpath import Players
 @dataclass
 class HLTVPlayerProfile (HLTVBase):
     """
-    Class for retrieving and parsing a CS:GO player's profile from HLTV.
+    Class for retrieving and parsing a player's profile from HLTV.
 
     Args:
         player_id (str): Unique identifier for the HLTV player.
