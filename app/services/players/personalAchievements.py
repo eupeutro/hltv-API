@@ -6,10 +6,19 @@ from app.utils.xpath import Players
 
 @dataclass
 class HLTVPlayerPersonalAchievements(HLTVBase):
+    """
+    A class for extract personal achievements from a player. 
+
+    Attributes:
+        player_id (str): The HLTV player id.
+    """
     player_id: str
 
     def __post_init__(self) -> None:
-        
+        """        
+        Initializes the base class, sets the URL to the player profile page, 
+        sends the request and check if the page is valid.
+        """
         HLTVBase.__init__(self)
         url = f"https://www.hltv.org/player/{self.player_id}/who"
         self.URL = url
@@ -17,14 +26,23 @@ class HLTVPlayerPersonalAchievements(HLTVBase):
         self.raise_exception_if_not_found(xpath = Players.Profile.URL)
 
     def __parse_player_personal_achievements(self) -> list:
-        
+        """
+        Parses the player's achievements section from the retrieved HLTV data.
+
+        Returns:
+        list: A list of dictionaries, where each dictionary contains information about a specific
+              achievement. Each dictionary includes the following keys:
+                - 'title': The name or title of the achievement.
+                - 'count': The number of times the player received this achievement.
+                - 'details': Additional details related to the achievement.
+        """
         placements = self.get_all_by_xpath(Players.personalAchievements.TOP_20_PLACEMENT)
         years = self.get_all_by_xpath(Players.personalAchievements.TOP_20_YEAR)
         article_urls = self.get_all_by_xpath(Players.personalAchievements.TOP_20_ARTICLE_URL)
 
         top_20_list = []
         for i, (placement, year) in enumerate(zip(placements,years)):
-            
+        
             clean_placement = trim(placement)
             clean_year = f"20{year.strip('()\'')}"
             article = f"https://www.hltv.org{article_urls[i]}"
@@ -58,6 +76,15 @@ class HLTVPlayerPersonalAchievements(HLTVBase):
         }
     
     def get_player_personal_achievements(self) -> dict:
+        """
+    Retrieves and parses the personal achievements of the player.
+
+    Returns:
+        dict: A dictionary containing the player's unique identifier (`id`) and their 
+              personal achievements under the key `personal_achievements`.
+        """
+
+
         self.response["id"] = self.player_id
         self.response["personal_achievements"] = self.__parse_player_personal_achievements()
     
