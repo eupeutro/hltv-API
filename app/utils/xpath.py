@@ -20,7 +20,7 @@ class Players:
         URL = RESULTS +"/td/a/@href"
         NATIONALITY = RESULTS + "//img/@alt"
 
-    class Achievements:
+    class teamAchievements:
         ROWS = "//table[contains(@class, 'achievement-table')]//tr[contains(@class, 'team')]"
         PLACEMENT = ".//div[contains(@class, 'achievement')]/text()"
         TEAM_NAME = ".//td[contains(@class, 'team-name-cell')]//span[@class='team-name']/text()"
@@ -28,3 +28,13 @@ class Players:
         TOURNAMENT_NAME = ".//td[contains(@class, 'tournament-name-cell')]/a/text()"
         TOURNAMENT_URL = ".//td[contains(@class, 'tournament-name-cell')]/a/@href"
         PLAYER_STATS_URL = ".//td[contains(@class, 'stats-button-cell')]/a/@href"
+    
+    class personalAchievements:
+        TOP_20_PLACEMENT = "//div[contains(@class,'playerTop20')]//span[contains(@class, 'top20ListRight')]/a/text()"
+        TOP_20_YEAR = "//div[contains(@class,'playerTop20')]//span[contains(@class, 'top20ListRight')]/span/text()"
+        TOP_20_ARTICLE_URL = "//div[contains(@class,'playerTop20')]//span[contains(@class, 'top20ListRight')]/a/@href"
+        MAJOR_WINNER_COUNT = "//div[contains(@class, 'majorWinner')]/b"
+        MAJOR_MVP_COUNT = "//div[contains(@class, 'majorMVP')]/b"
+        MVP_WINNER_COUNT = "//div[contains(@class, 'mvp-count')]//text()"
+        MVP_WINNER = "//div[contains(@class, 'trophyHolder')]//span[contains(@title, 'MVP')]/@title"
+

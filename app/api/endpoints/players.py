@@ -4,11 +4,13 @@ from fastapi import APIRouter,HTTPException
 
 from app.schemas.players.profile import PlayerProfile
 from app.schemas.players.search import PlayerSearch
-from app.schemas.players.Achievements import PlayerAchievements
+from app.schemas.players.teamAchievements import PlayerTeamAchievements
+from app.schemas.players.personalAchievements import PlayerPersonalAchievements
 
 from app.services.players.profile import HLTVPlayerProfile
 from app.services.players.search import HLTVPlayerSearch
-from app.services.players.achievements import HLTVPlayerAchievements
+from app.services.players.teamAchievements import HLTVPlayerTeamAchievements
+from app.services.players.personalAchievements import HLTVPlayerPersonalAchievements
 
 
 router = APIRouter()
@@ -27,8 +29,14 @@ def get_player_profile(player_id: str):
     player_info = hltv.get_player_profile()
     return player_info
 
-@router.get("/{player_id}/achievements", response_model=PlayerAchievements)
-def get_player_achievements(player_id: str):
-    hltv = HLTVPlayerAchievements(player_id=player_id)
-    player_achievements = hltv.get_player_achievements()
-    return player_achievements
+@router.get("/{player_id}/team_achievements", response_model=PlayerTeamAchievements)
+def get_player_team_achievements(player_id: str):
+    hltv = HLTVPlayerTeamAchievements(player_id=player_id)
+    player_team_achievements = hltv.get_player_team_achievements()
+    return player_team_achievements
+
+@router.get("/{player_id}/personal_achievements", response_model = PlayerPersonalAchievements)
+def get_player_personal_achievements(player_id: str):
+    hltv = HLTVPlayerPersonalAchievements(player_id=player_id)
+    player_personal_achievements = hltv.get_player_personal_achievements()
+    return player_personal_achievements
