@@ -22,11 +22,11 @@ from typing import Optional
 
 def extract_from_url(hltv_url: Optional[str], element: str) -> Optional[str]:
     """
-    Extracts specific elements (like player ID or nickname) from a given HLTV URL using regex.
+    Extracts specific elements (like player/team/event ID or nickname/name ) from a given HLTV URL using regex.
 
     Args:
         hltv_url (Optional[str]): The HLTV profile URL to extract information from.
-        element (str): The element to extract from the URL (e.g., "id", "nickname").
+        element (str): The element to extract from the URL (e.g., "id", "nickname", "team_name", "event_name", "team_id", "event_id").
 
     Returns:
         Optional[str]: The extracted value, or None if the element cannot be found.
@@ -35,17 +35,20 @@ def extract_from_url(hltv_url: Optional[str], element: str) -> Optional[str]:
         return None
     
    
-    regex = (
-        r"(?:https?://(?:www\.)?hltv\.org)?" 
-        r"/player/(?P<id>\d+)"
-        r"(?:/(?P<nickname>[\w\-]+))?"
-    )
+    patterns = {
+       "player": r"/player/(?P<id>\d+)(?:/(?P<nickname>[\w\-]+))?",
+        "team": r"/team/(?P<id>\d+)(?:/(?P<team_name>[\w\-]+))?",
+        "event": r"/events/(?P<id>\d+)(?:/(?P<event_name>[\w\-]+))?"
+    }
     
     
-    match = re.match(regex, hltv_url)
+    for pattern in patterns.values():
+        match = re.search(pattern, hltv_url)
+        if match:
+            return match.groupdict().get(element)
     
 
-    return match.groupdict().get(element) if match else None
+    return None
 
 
 def extract_nickname_from_name(full_name: str) -> Optional[str]:

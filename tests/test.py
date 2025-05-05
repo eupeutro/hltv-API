@@ -15,13 +15,12 @@ if __name__ == "__main__":
     
     achievements = HLTVPlayerAchievements(player_id= player_id)
 
-    rows = achievements.page.xpath("//table[@class='table-container achievement-table']/tbody/tr[@class='team']")
-    for i, row in enumerate(rows):
-        print(f"\n=== Conquista {i + 1} (HTML) ===")
-        print(etree.tostring(row, pretty_print=True, encoding="unicode"))
+    data = achievements.get_player_achievements()
 
-        print(f"\n=== Conquista {i + 1} (Texto) ===")
-        text_content = row.xpath("string()")  # Isso retorna uma lista com o texto completo
-        print(text_content[0].strip() if text_content else  "no text found")
+    
+    print(data)
+    #for i, row in enumerate(rows):
+       # print(f"\n=== Linha {i+1} ===")
+       # print(etree.tostring(row, pretty_print=True, encoding="unicode"))
     #pprint(data)
 

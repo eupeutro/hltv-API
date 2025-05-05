@@ -21,4 +21,10 @@ class Players:
         NATIONALITY = RESULTS + "//img/@alt"
 
     class Achievements:
-        ACHIEVEMENTS = "/table[@class = 'table-container achievement-table']/tbody/tr[@class='team']"
+        ROWS = "//table[contains(@class, 'achievement-table')]//tr[contains(@class, 'team')]"
+        PLACEMENT = ".//div[contains(@class, 'achievement')]/text()"
+        TEAM_NAME = ".//td[contains(@class, 'team-name-cell')]//span[@class='team-name']/text()"
+        TEAM_URL = ".//td[contains(@class, 'team-name-cell')]//a/@href"
+        TOURNAMENT_NAME = ".//td[contains(@class, 'tournament-name-cell')]/a/text()"
+        TOURNAMENT_URL = ".//td[contains(@class, 'tournament-name-cell')]/a/@href"
+        PLAYER_STATS_URL = ".//td[contains(@class, 'stats-button-cell')]/a/@href"
