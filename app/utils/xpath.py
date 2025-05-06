@@ -37,10 +37,12 @@ class Players:
         MAJOR_MVP_COUNT = "//div[contains(@class, 'majorMVP')]/b"
         MVP_WINNER_COUNT = "//div[contains(@class, 'mvp-count')]//text()"
         MVP_WINNER = "//div[contains(@class, 'trophyHolder')]//span[contains(@title, 'MVP')]/@title"
+        EVP =  "//div[contains(@id, 'EVPs')]//tr[contains(@class,'trophy-row')]//div[contains(@class,'trophy-event')]/a/text()"
+        
 
-        class Trophies: 
-            TOURNAMENT_NAME = "//tr[contains(@class, 'trophy-row')]//div[contains(@class, 'trophy-event')]/a/text()"
-            TROPHY_IMG_URL = ""
-            TOURNAMENT_URL = ""
+    class Trophies: 
+        TOURNAMENT_NAME =  "//div[contains(@id, 'Trophies')]//tr[contains(@class, 'trophy-row')]//div[contains(@class, 'trophy-event')]/a/text()"
+        TROPHY_IMG_URL = "//div[contains(@id, 'Trophies')]//tr[contains(@class, 'trophy-row')]//div[contains(@class, 'trophy-detail')]/img/@src"
+        TOURNAMENT_URL = "//div[contains(@id, 'Trophies')]//tr[contains(@class, 'trophy-row')]//div[contains(@class, 'trophy-event')]/a/@href"
             
 

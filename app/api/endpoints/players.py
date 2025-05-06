@@ -6,12 +6,13 @@ from app.schemas.players.profile import PlayerProfile
 from app.schemas.players.search import PlayerSearch
 from app.schemas.players.teamAchievements import PlayerTeamAchievements
 from app.schemas.players.personalAchievements import PlayerPersonalAchievements
+from app.schemas.players.trophies import PlayerTrophies
 
 from app.services.players.profile import HLTVPlayerProfile
 from app.services.players.search import HLTVPlayerSearch
 from app.services.players.teamAchievements import HLTVPlayerTeamAchievements
 from app.services.players.personalAchievements import HLTVPlayerPersonalAchievements
-
+from app.services.players.trophies import HLTVPlayersTrophies
 
 router = APIRouter()
 
@@ -40,3 +41,9 @@ def get_player_personal_achievements(player_id: str):
     hltv = HLTVPlayerPersonalAchievements(player_id=player_id)
     player_personal_achievements = hltv.get_player_personal_achievements()
     return player_personal_achievements
+
+@router.get("/{player_id}/trophies", response_model = PlayerTrophies)
+def get_player_trophies(player_id: str):
+    hltv = HLTVPlayersTrophies(player_id=player_id)
+    player_trophies = hltv.get_player_trophies()
+    return player_trophies
