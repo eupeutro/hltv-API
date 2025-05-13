@@ -45,4 +45,57 @@ class Players:
         TROPHY_IMG_URL = "//div[contains(@id, 'Trophies')]//tr[contains(@class, 'trophy-row')]//div[contains(@class, 'trophy-detail')]/img/@src"
         TOURNAMENT_URL = "//div[contains(@id, 'Trophies')]//tr[contains(@class, 'trophy-row')]//div[contains(@class, 'trophy-event')]/a/@href"
             
+    class Stats: 
+        #firepower stats
+        KILLS_PER_ROUND = "//div[contains(@data-per-round-title, 'Kills per round') and not(contains(@data-per-round-title, 'Kills per round win')) and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        KILLS_PER_ROUND_WIN ="//div[contains(@data-per-round-title, 'Kills per round win') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        DAMAGE_PER_ROUND = "//div[contains(@data-per-round-title, 'Damage per round') and not(contains(@data-per-round-title, 'Damage per round win')) and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        DAMAGE_PER_ROUND_WIN ="//div[contains(@data-per-round-title, 'Damage per round win') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        ROUNDS_WITH_A_KILL_PERCENTAGE= "//div[contains(@data-per-round-title, 'Rounds with a kill') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        RATING_1_0 =  "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Rating 1.0')]]//div[contains(@class, 'role-stats-data')]/text()"
+        ROUNDS_WITH_MULTI_KILL_PERCENTAGE = "//div[contains(@data-per-round-title, 'Rounds with a multi-kill') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        PISTOL_ROUND_RATING = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Pistol round rating')]]//div[contains(@class, 'role-stats-data')]/text()"
+        
+        #entrying stats
+        SAVED_BY_TEAMMATE_PER_ROUND ="//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Saved by teammate per round')]]//div[contains(@class, 'role-stats-data')]/text()"
+        TRADED_DEATHS_PER_ROUND = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Traded deaths per round')]]//div[contains(@class, 'role-stats-data')]/text()"
+        TRADED_DEATHS_PERCENTAGE = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Traded deaths percentage')]]//div[contains(@class, 'role-stats-data')]/text()"
+        OPENING_DEATHS_TRADED_PERCENTAGE = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Opening deaths traded percentage')]]//div[contains(@class, 'role-stats-data')]/text()"
+        ASSISTS_PER_ROUND = "//div[contains(@data-per-round-title, 'Assists per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        SUPPORT_ROUNDS_PERCENTAGE = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Support rounds')]]//div[contains(@class, 'role-stats-data')]/text()"
+        
+        #trading stats
+        SAVED_TEAMMATE_PER_ROUND = "//div[contains(@data-per-round-title, 'Saved teammate per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        TRADE_KILLS_PER_ROUND = "//div[contains(@data-per-round-title, 'Trade kills per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        TRADE_KILLS_PERCENTAGE = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Trade kills percentage')]]//div[contains(@class, 'role-stats-data')]/text()"
+        ASSISTED_KILLS_PERCENTAGE = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Assisted kills percentage')]]//div[contains(@class, 'role-stats-data')]/text()"
+        DAMAGE_PER_KILL = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Damage per kill')]]//div[contains(@class, 'role-stats-data')]/text()"
 
+        #opening stats
+        OPENING_KILLS_PER_ROUND = "//div[contains(@data-per-round-title, 'Opening kills per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        OPENING_DEATHS_PER_ROUND = "//div[contains(@data-per-round-title, 'Opening deaths per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        OPENING_ATTEMPTS = "//div[contains(@data-per-round-title, 'Opening attempts') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        OPENING_SUCCESS_ = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Opening success')]]//div[contains(@class, 'role-stats-data')]/text()"
+        WIN_AFTER_OPENING_KILL_PERCENTAGE = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Win% after opening kill')]]//div[contains(@class, 'role-stats-data')]/text()"
+        ATTACKS_PER_ROUND = "//div[contains(@data-per-round-title, 'Attacks per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+
+        #clutching stats
+        CLUTCH_POINTS_PER_ROUND = "//div[contains(@data-per-round-title, 'Clutch points per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        LAST_ALIVE_PERCENTAGE = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Last alive percentage')]]//div[contains(@class, 'role-stats-data')]/text()"
+        _1v1_WIN_PERCENTAGE = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), '1on1 win percentage')]]//div[contains(@class, 'role-stats-data')]/text()"
+        TIME_ALIVE_PER_ROUND = "//div[contains(@data-per-round-title, 'Time alive per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        SAVES_PER_ROUND_LOSS_PERCENTAGE = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Saves per round loss')]]//div[contains(@class, 'role-stats-data')]/text()"
+
+        #sniping stats
+        SNIPER_KILLS_PER_ROUND = "//div[contains(@data-per-round-title, 'Sniper kills per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        SNIPER_KILLS_PERCENTAGE = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Sniper kills percentage')]]//div[contains(@class, 'role-stats-data')]/text()"
+        ROUNDS_WITH_SNIPER_KILLS_PERCENTAGE = "//div[contains(@data-per-round-title, 'Rounds with sniper kills percentage') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        SNIPER_MULTI_KILL_ROUNDS = "//div[contains(@data-per-round-title, 'Sniper multi-kill rounds') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        SNIPER_OPENING_KILLS_PER_ROUND = "//div[contains(@data-per-round-title, 'Sniper opening kills per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+
+        #utility stats
+        UTILITY_DAMAGE_PER_ROUND = "//div[contains(@data-per-round-title, 'Utility damage per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        UTILITY_KILLS_PER_100_ROUNDS = "//div[contains(@data-per-round-title, 'Utility kills per 100 rounds') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        FLASHES_THROWN_PER_ROUND = "//div[contains(@data-per-round-title, 'Flashes thrown per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        FLASH_ASSISTS_PER_ROUND = "//div[contains(@data-per-round-title, 'Flash assists per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        TIME_OPPONENT_FLASHED_PER_ROUND ="//div[contains(@data-per-round-title, 'Time opponent flashed per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"

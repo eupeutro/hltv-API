@@ -6,9 +6,21 @@ from app.utils.xpath import Players
 
 @dataclass
 class HLTVPlayersTrophies(HLTVBase):
+    """
+    A class for extracting personal trophies from a player.
+
+    Attributes:
+        playerd_id (str): The HLTV player ID
+    """
     player_id: str
 
     def __post_init__(self) -> None:
+        """
+        Initializes the base class, sets the URL to the player personal trophies tab, 
+        sends the request and check if the page is valid.
+
+        """
+
         HLTVBase.__init__(self)
         url = f"https://www.hltv.org/player/{self.player_id}/who#tab-trophiesBox"
         self.URL = url
@@ -16,6 +28,13 @@ class HLTVPlayersTrophies(HLTVBase):
         self.raise_exception_if_not_found(xpath = Players.Profile.URL)
 
     def __parse_player_trophies(self) -> list:
+        """
+        Parses the player's personal trophies section from the HLTV profile.
+
+        Returns:
+            list: A list of dictionaries, each containing information about 
+                  each player personal trophie.
+        """
 
         tournament_name = self.get_all_by_xpath(Players.Trophies.TOURNAMENT_NAME)
         tournament_img_url = self.get_all_by_xpath(Players.Trophies.TROPHY_IMG_URL)
