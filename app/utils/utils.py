@@ -99,3 +99,48 @@ def extract_age (age_str: str) -> Optional[int]:
             return int(match.group(1))
 
     return None
+
+def extract_float_from_percentage_number(percentage_str: str) -> Optional[int]:
+    """
+    Extracts the numeric percentage from a string in the format 'XX%'.
+
+    Args:
+        percentage_str (str): The percentage string in the format 'XX%' (e.g., '28%').
+
+    Returns:
+        Optional[int]: The extracted percentage as an integer, or None if the extraction fails.
+    """
+
+    if percentage_str:
+        match = re.match(r"(\d+(?:\.\d+)?)%", percentage_str)
+        if match:
+            return float(match.group(1))
+    
+    return None
+        
+def convert_minutes_to_seconds(minutes_str:str) -> Optional[int]:
+    """
+    Converts the minutes from a string in the format 'Xm Xs' and converts to total seconds integer.
+
+    Args:
+        minutes_str (str): The raw minutes string in the format 'Xm Xs' (e.g., '1m 2s').
+
+    Returns:
+        Optional[int]: The converted seconds as an integer, or None if the conversion fails.
+    """
+
+    if minutes_str:
+        minutes = 0
+        seconds = 0
+
+        match_minutes = re.search(r'(\d+)m', minutes_str)
+        if match_minutes:
+            minutes = int(match_minutes.group(1))
+
+        match_seconds = re.search(r'(\d+)s', minutes_str)
+        if match_seconds:
+            seconds = int(match_seconds.group(1))
+
+            return minutes * 60 + seconds
+    
+    return None
