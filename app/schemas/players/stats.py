@@ -1,4 +1,5 @@
-from typing import Optional
+from typing import Optional, List
+
 from app.schemas.base import HLTVBaseModel ,AuditMixin
 
 
@@ -74,6 +75,6 @@ class PlayerStatsRoles(HLTVBaseModel):
 
 class PlayerStats(HLTVBaseModel, AuditMixin):
     id: str
-    stats: Optional[PlayerStatsRoles] = None
+    stats: Optional[List[PlayerStatsRoles]] = None
 
 

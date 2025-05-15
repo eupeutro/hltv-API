@@ -43,7 +43,7 @@ class HLTVPlayerPersonalAchievements(HLTVBase):
         for i, (placement, year) in enumerate(zip(placements,years)):
         
             clean_placement = trim(placement)
-            clean_year = f"20{year.strip('()\'')}"
+            clean_year = "20" + year.strip("()'")
             article = f"https://www.hltv.org{article_urls[i]}"
 
             top_20_list.append({

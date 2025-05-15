@@ -155,3 +155,13 @@ def parse_float(value: str | None, silent: bool = True) -> Optional[float]:
         if silent:
             return None
         raise ValueError(f"Invalid float value: '{value}'")
+    
+def parse_int(value: str | None, silent: bool = True) -> Optional[int]:
+    if value is None or value.strip() in{'', '-'}:
+        return None
+    try: 
+        return int(value.strip())
+    except ValueError:
+        if silent:
+            return None
+        raise ValueError(f"Invalid float value: '{value}'")
