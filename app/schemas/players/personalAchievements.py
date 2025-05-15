@@ -15,12 +15,12 @@ class personalAchievementDetail(HLTVBaseModel):
     major_winner_count: Optional[int] = None
     major_mvp_count: Optional[int] = None
     mvp_winner_count: Optional[int] = None
-    evp_count: Optional[int] 
-    top_20_count: Optional[int]
+    evp_count: Optional[int] = None
+    top_20_count: Optional[int] = None
     mvp_winner: Optional[List[str]] = None
     evp_at: Optional[List[str]] = None
     top_20: Optional[List[Top20Achievement]] = None
 
 class PlayerPersonalAchievements(HLTVBaseModel, AuditMixin):
     id: str
-    personal_achievements: Optional[personalAchievementDetail]
+    personal_achievements: Optional[personalAchievementDetail] = None

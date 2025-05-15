@@ -9,10 +9,10 @@ class PlayerProfile(HLTVBaseModel,AuditMixin):
     url: HttpUrl
     nickname: str
     name: str
-    age: Optional[int]
-    nationality: Optional[str]
+    age: int
+    nationality: str
     rating:Optional[float]
-    current_team: str
-    current_team_url: HttpUrl
-    image_url: Optional[HttpUrl]
-    social_media: Optional[list[str]]
+    current_team: Optional[str] = None
+    current_team_url: Optional[HttpUrl] = None
+    image_url: Optional[HttpUrl] = None
+    social_media: Optional[list[str]] = None

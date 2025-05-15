@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import List, Optional
 
 from pydantic import HttpUrl
 
@@ -16,4 +16,4 @@ class PlayerSearchResult(HLTVBaseModel):
 
 class PlayerSearch(HLTVBaseModel,AuditMixin):
     query: str
-    results: List[PlayerSearchResult]
+    results: Optional[List[PlayerSearchResult]] =None

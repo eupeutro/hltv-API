@@ -7,6 +7,8 @@ from app.services.players.personalAchievements import HLTVPlayerPersonalAchievem
 from app.services.players.teamAchievements import HLTVPlayerTeamAchievements
 from app.services.players.trophies import HLTVPlayersTrophies
 from app.services.players.stats import HLTVPlayerStats
+from app.services.players.careerStats import HLTVPlayerCareerStats
+
 
 if __name__ == "__main__":
     # Exemplo com s1mple (ID 7998)
@@ -18,9 +20,9 @@ if __name__ == "__main__":
     
     #achievements = HLTVPlayerTeamAchievements(player_id=player_id)
 
-    achievements = HLTVPlayerStats(player_id= player_id)
+    achievements = HLTVPlayerCareerStats(player_id= player_id)
 
-    data = achievements.get_player_stats()
+    data = achievements.get_player_career_stats()
 
     #data = achievements.get_player_team_achievements()
 

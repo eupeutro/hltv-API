@@ -74,8 +74,8 @@ class Players:
         #opening stats
         OPENING_KILLS_PER_ROUND = "//div[contains(@data-per-round-title, 'Opening kills per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
         OPENING_DEATHS_PER_ROUND = "//div[contains(@data-per-round-title, 'Opening deaths per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
-        OPENING_ATTEMPTS = "//div[contains(@data-per-round-title, 'Opening attempts') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
-        OPENING_SUCCESS_ = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Opening success')]]//div[contains(@class, 'role-stats-data')]/text()"
+        OPENING_ATTEMPTS_PERCENTAGE = "//div[contains(@data-per-round-title, 'Opening attempts') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+        OPENING_SUCCESS_PERCENTAGE = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Opening success')]]//div[contains(@class, 'role-stats-data')]/text()"
         WIN_AFTER_OPENING_KILL_PERCENTAGE = "//div[contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-top')][.//div[contains(@class, 'role-stats-title') and contains(text(), 'Win% after opening kill')]]//div[contains(@class, 'role-stats-data')]/text()"
         ATTACKS_PER_ROUND = "//div[contains(@data-per-round-title, 'Attacks per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
 
@@ -99,3 +99,20 @@ class Players:
         FLASHES_THROWN_PER_ROUND = "//div[contains(@data-per-round-title, 'Flashes thrown per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
         FLASH_ASSISTS_PER_ROUND = "//div[contains(@data-per-round-title, 'Flash assists per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
         TIME_OPPONENT_FLASHED_PER_ROUND ="//div[contains(@data-per-round-title, 'Time opponent flashed per round') and contains(@class, 'stats-side-combined')]//div[contains(@class, 'role-stats-data')]//text()"
+
+    class careerStats:
+        TOTAL_KILLS = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Total kills')]/following-sibling::span[1]/text()"
+        HEADSHOT_PERCENTAGE = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Headshot %')]/following-sibling::span[1]/text()"
+        TOTAL_DEATHS = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Total deaths')]/following-sibling::span[1]/text()"
+        KD_RATIO = "//div[contains(@class, 'stats-row')]/span[contains(text(),'K/D Ratio')]/following-sibling::span[1]/text()"
+        DAMAGE_PER_ROUND = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Damage / Round')]/following-sibling::span[1]/text()"
+        GRENADE_DMG_PER_ROUND = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Grenade dmg / Round')]/following-sibling::span[1]/text()"
+        MAPS_PLAYED = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Maps played')]/following-sibling::span[1]/text()"
+        ROUNDS_PLAYED = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Rounds played')]/following-sibling::span[1]/text()"
+        KILLS_PER_ROUND = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Kills / round')]/following-sibling::span[1]/text()"
+        ASSISTS_PER_ROUND = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Assists / round')]/following-sibling::span[1]/text()"
+        DEATHS_PER_ROUND = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Deaths / round')]/following-sibling::span[1]/text()"
+        SAVED_BY_TEAMMATE_PER_ROUND = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Saved by teammate / round')]/following-sibling::span[1]/text()"
+        SAVED_TEAMMATES_PER_ROUND = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Saved teammates / round')]/following-sibling::span[1]/text()"
+        RATING1_0 = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Rating 1.0')]/following-sibling::span[1]/text()"
+        

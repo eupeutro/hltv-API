@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic import HttpUrl
 
@@ -17,5 +17,5 @@ class teamAchievementDetails(HLTVBaseModel):
 
 class PlayerTeamAchievements(HLTVBaseModel, AuditMixin):
     id: str
-    achievement_count: int
-    achievements: List[teamAchievementDetails]
+    achievement_count: Optional[int] = None
+    achievements: Optional[List[teamAchievementDetails]] = None

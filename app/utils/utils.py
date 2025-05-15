@@ -144,3 +144,14 @@ def convert_minutes_to_seconds(minutes_str:str) -> Optional[int]:
             return minutes * 60 + seconds
     
     return None
+
+
+def parse_float(value: str | None, silent: bool = True) -> Optional[float]:
+    if value is None or value.strip() in{'', '-'}:
+        return None
+    try: 
+        return float(value.strip())
+    except ValueError:
+        if silent:
+            return None
+        raise ValueError(f"Invalid float value: '{value}'")
