@@ -130,3 +130,4 @@ class Events:
         TEAM_NAME = "//div[@class='team-name']//div[@class='text-container']//div[@class='text']/text()"
         TEAM_URL = "//div[@class='team-name']//a/@href"
         TEAM_LOGO_URL = "//div[@class = 'logo-box']//img/@src"
+        QUALIFY_METHOD = "//a[@class= 'team-event-link-container']//span/text()"
