@@ -125,6 +125,10 @@ class Events:
         PRIZE_POOL = "//td[contains(@class, 'prizepool')]/text()"
         EVENT_LOCATION = "//td[contains(@class,'location')]//span/text()"
         LOCATION_FLAG_URL = "//td[contains(@class,'location')]//img/@src"
+        EVENT_MVP_NICKNAME = "//div[@class= 'player-name']//a//span[@class = 'bold']/text()"
+        EVENT_MVP_URL = "//div[@class= 'player-name']//a/@href"
+        EVENT_EVPS_NICKNAME = "//a[contains(@class, 'evp-wrapper')]//div[@class= 'evp-name-top']/text()"
+        EVENT_EVPS_URL = "//a[contains(@class, 'evp-wrapper')]/@href"
 
     class EventTeams: 
         TEAM_NAME = "//div[@class='team-name']//div[@class='text-container']//div[@class='text']/text()"
