@@ -3,21 +3,24 @@ from pprint import pprint
 from lxml import etree
 from app.services.players.profile import HLTVPlayerProfile
 from app.services.players.search import HLTVPlayerSearch
-from app.services.events.search import HLTVEventSearch
+from app.services.events.search import HLTVEventsSearch
 from app.services.players.personalAchievements import HLTVPlayerPersonalAchievements
 from app.services.players.teamAchievements import HLTVPlayerTeamAchievements
 from app.services.players.trophies import HLTVPlayersTrophies
 from app.services.players.stats import HLTVPlayerStats
 from app.services.players.careerStats import HLTVPlayerCareerStats
+from app.services.players.eventStats import HLTVPlayerEventStats
 
 
 if __name__ == "__main__":
     # Exemplo com s1mple (ID 7998)
 
     query = "pro league"
+    
     player_id = "2023"  # ID do jogador
-    profile = HLTVEventSearch(query=query)
-    data = profile.search_events()
+    event_id = "6588"
+    profile = HLTVPlayerEventStats(player_id=player_id,event_id=event_id)
+    data = profile.get_player_event_stats()
     
     #achievements = HLTVPlayerTeamAchievements(player_id=player_id)
 

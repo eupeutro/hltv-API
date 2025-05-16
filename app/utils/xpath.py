@@ -115,4 +115,18 @@ class Players:
         SAVED_BY_TEAMMATE_PER_ROUND = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Saved by teammate / round')]/following-sibling::span[1]/text()"
         SAVED_TEAMMATES_PER_ROUND = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Saved teammates / round')]/following-sibling::span[1]/text()"
         RATING1_0 = "//div[contains(@class, 'stats-row')]/span[contains(text(),'Rating 1.0')]/following-sibling::span[1]/text()"
-        
+
+class Events:
+    class EventProfile:
+        EVENT_NAME = "//h1[contains(@class, 'event-hub-title')]/text()"
+        TEAM_COUNT = "//td[contains(@class,'teamsNumber')]/text()"
+        EVENT_START_DATE = "//th[contains(text(), 'Start date')]/parent::tr/td/span/text()"
+        EVENT_END_DATE = "//th[contains(text(), 'End date')]/parent::tr/td/span/span/text()"
+        PRIZE_POOL = "//td[contains(@class, 'prizepool')]/text()"
+        EVENT_LOCATION = "//td[contains(@class,'location')]//span/text()"
+        LOCATION_FLAG_URL = "//td[contains(@class,'location')]//img/@src"
+
+    class EventTeams: 
+        TEAM_NAME = "//div[@class='team-name']//div[@class='text-container']//div[@class='text']/text()"
+        TEAM_URL = "//div[@class='team-name']//a/@href"
+        TEAM_LOGO_URL = "//div[@class = 'logo-box']//img/@src"

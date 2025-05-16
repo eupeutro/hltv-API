@@ -11,7 +11,7 @@ class HLTVPlayerStats(HLTVBase):
     A class for extracting stats from a player.
 
     Attributes:
-        playerd_id (str): The HLTV player ID
+        player_id (str): The HLTV player ID
     """
     player_id: str
 
