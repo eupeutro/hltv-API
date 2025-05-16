@@ -17,7 +17,9 @@ class HLTVPlayerSearch(HLTVBase):
     query: str
 
     def __post_init__(self) -> None:
-        """Initialize the HLTVPlayerSearch class by setting up the search URL."""
+        """
+        Initialize the HLTVPlayerSearch class by setting up the search URL.
+        """
 
         HLTVBase.__init__(self)
         self.URL = f"https://www.hltv.org/search?term={self.query}"
@@ -67,7 +69,7 @@ class HLTVPlayerSearch(HLTVBase):
 
             results.append({
 
-                "id": str(id),
+                "id": id,
                 "name": name,
                 "nickname": nickname,
                 "nationality": nationality,

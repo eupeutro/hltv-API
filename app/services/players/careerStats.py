@@ -17,6 +17,11 @@ class HLTVPlayerCareerStats(HLTVBase):
     player_id: str
 
     def __post_init__(self) -> None:
+        """
+        Initializes the base class, sets the URL to the player stats tab, 
+        sends the request and check if the page is valid.
+
+        """
         HLTVBase.__init__(self)
         url = f"https://www.hltv.org/stats/players/{self.player_id}/who"
         self.URL = url
@@ -24,6 +29,13 @@ class HLTVPlayerCareerStats(HLTVBase):
         self.raise_exception_if_not_found(xpath=Players.Profile.URL)
 
     def get_player_career_stats(self) -> dict:
+        """
+        Parses and returns the player's career stats information.
+
+        Returns:
+            dict: A dictionary containing the player's unique identifier, career stats, and the timestamp of when
+                the data was last updated.
+        """
 
         total_kills = parse_float(self.get_text_by_xpath(Players.careerStats.TOTAL_KILLS))
         headshot_percentage = extract_float_from_percentage_number(self.get_text_by_xpath(Players.careerStats.HEADSHOT_PERCENTAGE))
