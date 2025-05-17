@@ -127,11 +127,17 @@ class Events:
         LOCATION_FLAG_URL = "//td[contains(@class,'location')]//img/@src"
         EVENT_MVP_NICKNAME = "//div[@class= 'player-name']//a//span[@class = 'bold']/text()"
         EVENT_MVP_URL = "//div[@class= 'player-name']//a/@href"
+        
+        
+        #EVPS
         EVENT_EVPS_NICKNAME = "//a[contains(@class, 'evp-wrapper')]//div[@class= 'evp-name-top']/text()"
         EVENT_EVPS_URL = "//a[contains(@class, 'evp-wrapper')]/@href"
 
-    class EventTeams: 
+        #teams       
         TEAM_NAME = "//div[@class='team-name']//div[@class='text-container']//div[@class='text']/text()"
         TEAM_URL = "//div[@class='team-name']//a/@href"
+        TEAM_PRIZE_RECEIVED = "//div[@class='placement']//div[@class='prize']/text()"
+        TEAM_PLACEMENT  = "//div[contains(@class,'placement')]/div[not(@class)]/text()"
         TEAM_LOGO_URL = "//div[@class = 'logo-box']//img/@src"
         QUALIFY_METHOD = "//a[@class= 'team-event-link-container']//span/text()"
+        

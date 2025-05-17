@@ -53,7 +53,7 @@ class HLTVEventsSearch(HLTVBase):
         for event in events:
             id = event.get("id")
             name = event.get("name")
-            url = f"https://www.hltv.org{event.get("location")}"
+            url = f"https://www.hltv.org{event.get('location')}"
             event_location = event.get("physicalLocation")
             prize_pool = event.get("prizePool")
             flag_url = event.get("flagUrl")

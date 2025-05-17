@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from lxml import etree
 
 
 from app.services.base import HLTVBase
