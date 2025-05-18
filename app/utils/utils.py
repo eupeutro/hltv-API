@@ -147,6 +147,17 @@ def convert_minutes_to_seconds(minutes_str:str) -> Optional[int]:
 
 
 def parse_float(value: str | None, silent: bool = True) -> Optional[float]:
+    """
+    Attempts to convert a string value to a float.
+
+    Args:
+        value (str | None): The string to parse.
+        silent (bool): If True, returns None on failure instead of raising an error.
+
+    Returns:
+        Optional[float]: The parsed float value, or None if conversion fails or the input is empty/'-'.
+    """
+
     if value is None or value.strip() in{'', '-'}:
         return None
     try: 
@@ -157,6 +168,17 @@ def parse_float(value: str | None, silent: bool = True) -> Optional[float]:
         raise ValueError(f"Invalid float value: '{value}'")
     
 def parse_int(value: str | None, silent: bool = True) -> Optional[int]:
+    """
+    Attempts to convert a string value to an integer.
+
+    Args:
+        value (str | None): The string to parse.
+        silent (bool): If True, returns None on failure instead of raising an error.
+
+    Returns:
+        Optional[int]: The parsed integer value, or None if conversion fails or the input is empty/'-'.
+    """
+
     if value is None or value.strip() in{'', '-'}:
         return None
     try: 

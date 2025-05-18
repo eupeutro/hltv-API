@@ -9,7 +9,7 @@ from app.services.players.teamAchievements import HLTVPlayerTeamAchievements
 from app.services.players.trophies import HLTVPlayersTrophies
 from app.services.players.stats import HLTVPlayerStats
 from app.services.players.careerStats import HLTVPlayerCareerStats
-from app.services.players.eventStats import HLTVPlayerEventStats
+from app.services.events.profile import HLTVEventProfile
 
 
 if __name__ == "__main__":
@@ -18,9 +18,9 @@ if __name__ == "__main__":
     query = "pro league"
     
     player_id = "2023"  # ID do jogador
-    event_id = "6588"
-    profile = HLTVPlayerEventStats(player_id=player_id,event_id=event_id)
-    data = profile.get_player_event_stats()
+    event_id = "8044"
+    profile = HLTVEventProfile(event_id=event_id)
+    data = profile.get_event_profile()
     
     #achievements = HLTVPlayerTeamAchievements(player_id=player_id)
 
