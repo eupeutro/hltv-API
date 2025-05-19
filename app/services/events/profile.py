@@ -42,8 +42,8 @@ class HLTVEventProfile (HLTVBase):
         
         #mvp
         event_mvp_nickname = self.get_text_by_xpath(Events.EventProfile.EVENT_MVP_NICKNAME)
-        event_mvp_url = f"https://www.hltv.org{self.get_text_by_xpath(Events.EventProfile.EVENT_MVP_URL)}"
-        event_mvp_id = extract_from_url(event_mvp_url, "id")
+        event_mvp_url_suffix = self.get_text_by_xpath(Events.EventProfile.EVENT_MVP_URL)
+        
         
         #evps
         event_evps_nickname = self.get_all_by_xpath(Events.EventProfile.EVENT_EVPS_NICKNAME)
@@ -52,26 +52,35 @@ class HLTVEventProfile (HLTVBase):
         #teams
         team_name = self.get_all_by_xpath(Events.EventProfile.TEAM_NAME)
         team_url = self.get_all_by_xpath(Events.EventProfile.TEAM_URL)
+        team_placement = self.get_all_by_xpath(Events.EventProfile.TEAM_PLACEMENT)
+
 
         #dentro do for:
         #evps_id 
         #team_id
 
 
-        mvp_list = [{
-            "id": event_mvp_id,
-            "nickname": event_mvp_nickname,
-            "event_stats": f"https://www.hltv.org/stats/players/{event_mvp_id}/who?event={self.event_id}"
-}]
+        mvp_list = None
+
+        if event_mvp_nickname and event_mvp_url_suffix:
+            event_mvp_url = f"https://www.hltv.org{event_mvp_url_suffix}"
+            event_mvp_id = extract_from_url(event_mvp_url, 'id')
+            
+            mvp_list =[{
+                "id": event_mvp_id,
+                "nickname": event_mvp_nickname,
+                "event_stats": f"https://www.hltv.org/stats/players/{event_mvp_id}/who?event={self.event_id}"
+            }]
 
         team_list = []
 
-        for (name, url) in zip(team_name, team_url):
+        for (name, url,placement) in zip(team_name, team_url,team_placement):
             id = extract_from_url(url, 'id')
 
             team_list.append({
                 "id": id,
-                "name": name
+                "name": name,
+                "team_placement": placement
             })
 
 
@@ -83,7 +92,7 @@ class HLTVEventProfile (HLTVBase):
             evps_list.append({
                 "id": event_evp_id,
                 "nickname": nickname,
-                "event_stats": f"https://www.hltv.org/stats/players/{id}/who?event={self.event_id}"
+                "event_stats": f"https://www.hltv.org/stats/players/{event_evp_id}/who?event={self.event_id}"
             })
 
         return {
@@ -95,8 +104,8 @@ class HLTVEventProfile (HLTVBase):
             "prize_pool": prize_pool,
             "location": event_location,
             "location_flag_url": location_flag_url,
-            "mvp": mvp_list,
-            "evps": evps_list
+            "mvp": mvp_list if mvp_list else None,
+            "evps": evps_list if  evps_list else None
              }
     
     def get_event_profile(self) -> dict:

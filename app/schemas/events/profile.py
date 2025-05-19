@@ -10,13 +10,14 @@ class EventEvpsDetails(HLTVBaseModel):
     event_stats: HttpUrl
 
 class EventMvpDetail(HLTVBaseModel):
-    id: str
-    nickname: str
-    event_stats: HttpUrl
+    id: Optional[str]
+    nickname: Optional[str]
+    event_stats: Optional[HttpUrl]
 
 class EventTeamDetail(HLTVBaseModel):
     id: str
     name: str
+    team_placement: str
 
 
 class EventProfileDetail(HLTVBaseModel):
@@ -27,8 +28,8 @@ class EventProfileDetail(HLTVBaseModel):
     prize_pool: str
     location: str
     location_flag_url: HttpUrl
-    mvp: List[EventMvpDetail]
-    evps: List[EventEvpsDetails]
+    mvp: Optional[List[EventMvpDetail]]
+    evps: Optional[List[EventEvpsDetails]]
     teams: List[EventTeamDetail]
 class EventProfile(HLTVBaseModel,AuditMixin):
     id: str
