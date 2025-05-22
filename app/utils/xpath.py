@@ -123,9 +123,12 @@ class Events:
         EVENT_START_DATE = "//th[contains(text(), 'Start date')]/parent::tr/td/span/text()"
         EVENT_END_DATE = "//th[contains(text(), 'End date')]/parent::tr/td/span/span/text()"
         PRIZE_POOL = "//td[contains(@class, 'prizepool')]/text()"
+        PRIZE_CLUB_SHARE = "//th[contains(text(), 'Club share')]/following-sibling::td"
+        PRIZE_PLAYER_SHARE = "//th[contains(text(), 'Player share')]/following-sibling::td"
         EVENT_LOCATION = "//td[contains(@class,'location')]//span/text()"
         LOCATION_FLAG_URL = "//td[contains(@class,'location')]//img/@src"
-        
+        MAP_POOL =  "//div[@class = 'map-pool-map-name']"
+
         #MVP
         EVENT_MVP_NICKNAME = "//div[@class= 'player-name']//a//span[@class = 'bold']/text()"
         EVENT_MVP_URL = "//div[@class= 'player-name']//a/@href"
@@ -140,8 +143,25 @@ class Events:
         TEAM_PLACEMENT = "//div[contains(@class,'placement')]/div[not(@class)]/text()"
         
     class EventTeamStats:
-        TEAM_PRIZE_RECEIVED = "//div[@class='placement']//div[@class='prize']/text()"
-        TEAM_PLACEMENT  = "//div[contains(@class,'placement')]/div[not(@class)]/text()"
-        TEAM_LOGO_URL = "//div[@class = 'logo-box']//img/@src"
-        QUALIFY_METHOD = "//a[@class= 'team-event-link-container']//span/text()"
+
+        #'teams attended' box
+        TEAM_LINEUP = "//div[@class= 'lineup-box']//div[contains(@class , 'flag-align player')]"
+        TEAM_COACH = "//div[@class = 'coach-text']"
+        QUALIFY_METHOD = "//div[@class = 'team-name']/following-sibbling::div[contains(@class, 'text-container')]//div[contains(@class, 'event-text')]"
+
+
+        #'vrs ranking' box
+        VRS_DATE = "//th[contains(text(), 'VRS date')]/following-sibling::td"
+        VRS_POINTS_BEFORE_EVENT = "//tbody[contains(@class,'vrs-before')]//td[@class='vrs-points']"
+        VRS_POINTS_AFTER_EVENT = "//tbody[@class = 'vrs-after']//td[@class='vrs-points']"
+        VRS_POINTS_ACQUIRED = "//td[@class = 'vrs-points']//div[contains(@class, 'finished-points')]"
+        VRS_PLACEMENT_BEFORE_EVENT = "//tbody[contains(@class, 'vrs-before')]//td[@class = 'vrs-placements']//div[@class = 'start-only']//div[@class = 'vrs-placement-btn']"
+        VRS_PLACEMENT_AFTER_EVENT = "//tbody[contains(@class, 'vrs-after')]//td[@class = 'vrs-placements']//div[@class = 'finished-only']//div[@class = 'vrs-placement-btn']"
         
+        #'prize distribution' box
+        PRIZE = "//div[@class='placement']//div[@class='prize']/text()"
+        PRIZE_CLUB_SHARE = "//div[@class='placement']//div[contains(@class,'prize club-share')]/text()"
+        TEAM_PLACEMENT  = "//div[contains(@class,'placement')]/div[not(@class)]/text()"
+        
+
+    
