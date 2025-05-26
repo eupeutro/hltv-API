@@ -145,23 +145,24 @@ class Events:
     class EventTeamStats:
 
         #'teams attended' box
-        TEAM_LINEUP = "//div[@class= 'lineup-box']//div[contains(@class , 'flag-align player')]"
-        TEAM_COACH = "//div[@class = 'coach-text']"
-        QUALIFY_METHOD = "//div[@class = 'team-name']/following-sibbling::div[contains(@class, 'text-container')]//div[contains(@class, 'event-text')]"
+        TEAM_LINEUP = "//div[contains(@class, 'team-box') and .//a[contains(@href, '/team/{team_id}/')]]//div[@class='lineup-box']//div[contains(@class , 'flag-align player')]"
+        TEAM_COACH = "//div[contains(@class, 'team-box') and .//a[contains(@href, '/team/{team_id}/')]]//div[@class='coach-text']/parent::div//div[contains(@class, 'flag-align player')]"
+        QUALIFY_METHOD = "//div[contains(@class, 'team-box') and .//a[contains(@href, '/team/{team_id}/')]]//div[contains(@class, 'sub-text event-text')]"
 
 
         #'vrs ranking' box
         VRS_DATE = "//th[contains(text(), 'VRS date')]/following-sibling::td"
-        VRS_POINTS_BEFORE_EVENT = "//tbody[contains(@class,'vrs-before')]//td[@class='vrs-points']"
-        VRS_POINTS_AFTER_EVENT = "//tbody[@class = 'vrs-after']//td[@class='vrs-points']"
-        VRS_POINTS_ACQUIRED = "//td[@class = 'vrs-points']//div[contains(@class, 'finished-points')]"
-        VRS_PLACEMENT_BEFORE_EVENT = "//tbody[contains(@class, 'vrs-before')]//td[@class = 'vrs-placements']//div[@class = 'start-only']//div[@class = 'vrs-placement-btn']"
-        VRS_PLACEMENT_AFTER_EVENT = "//tbody[contains(@class, 'vrs-after')]//td[@class = 'vrs-placements']//div[@class = 'finished-only']//div[@class = 'vrs-placement-btn']"
+        VRS_POINTS_BEFORE_EVENT = "//tbody[contains(@class, 'vrs-before')][.//a[contains(@href, '/team/{team_id}/')]]//tr[.//a[contains(@href, '/team/{team_id}/')]]/td[@class='vrs-points']/div[@class='start-only']"
+        VRS_POINTS_AFTER_EVENT = "//tbody[contains(@class, 'vrs-after')][.//a[contains(@href, '/team/{team_id}/')]]//tr[.//a[contains(@href, '/team/{team_id}/')]]/td[@class='vrs-points']/div[@class='start-only']"
+        VRS_POINTS_ACQUIRED = "//tbody[contains(@class, 'vrs-after')][.//a[contains(@href, '/team/{team_id}/')]]//tr[.//a[contains(@href, '/team/{team_id}/')]]/td[@class='vrs-points']/div[@class='finished-only']//div[@class = 'finished-points positive']"
+        VRS_PLACEMENT_BEFORE_EVENT = "//tbody[contains(@class, 'vrs-before')][.//a[contains(@href, '/team/{team_id}/')]]//tr[.//a[contains(@href, '/team/{team_id}/')]]/td[@class = 'vrs-placements']//div[@class = 'start-only']//div[@class = 'vrs-placement-btn']"
+        VRS_PLACEMENT_AFTER_EVENT = "//tbody[contains(@class, 'vrs-after')][.//a[contains(@href, '/team/{team_id}/')]]//tr[.//a[contains(@href, '/team/{team_id}/')]]/td[@class = 'vrs-placements']//div[@class = 'start-only']//div[@class = 'vrs-placement-btn']"
+
         
         #'prize distribution' box
-        PRIZE = "//div[@class='placement']//div[@class='prize']/text()"
-        PRIZE_CLUB_SHARE = "//div[@class='placement']//div[contains(@class,'prize club-share')]/text()"
-        TEAM_PLACEMENT  = "//div[contains(@class,'placement')]/div[not(@class)]/text()"
+        PRIZE = "//div[@class = 'team' and .//a[contains(@href,'/team/{team_id}/')]]/following-sibling::div[@class='prize']/text()"
+        PRIZE_CLUB_SHARE = "//div[@class = 'team' and .//a[contains(@href,'/team/{team_id}/')]]/following-sibling::div[@class='prize club-share']/text()"
+        TEAM_PLACEMENT  = "//div[@class = 'team' and .//a[contains(@href,'/team/{team_id}/')]]/following-sibling::div[not(@class)]/text()"
         
 
     
