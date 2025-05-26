@@ -26,8 +26,11 @@ class HLTVEventTeamStats(HLTVBase):
             
             #lineup
             team_lineup = self.get_all_by_xpath(Events.EventTeamStats.TEAM_LINEUP.format(team_id = self.team_id))
+            team_player_url= self.get_all_by_xpath(Events.EventTeamStats.TEAM_PLAYER_URL)
             team_coach = self.get_text_by_xpath(Events.EventTeamStats.TEAM_COACH.format(team_id = self.team_id))
-           
+            team_coach_url = self.get_text_by_xpath(Events.EventTeamStats.TEAM_COACH_URL)
+
+
             #vrs
             vrs_date = self.get_text_by_xpath(Events.EventTeamStats.VRS_DATE)
             vrs_points_before_event = self.get_text_by_xpath(Events.EventTeamStats.VRS_POINTS_BEFORE_EVENT.format(team_id = self.team_id))      
@@ -45,7 +48,10 @@ class HLTVEventTeamStats(HLTVBase):
                  "qualify_method": qualify_method,
                  "lineup":{
                         "lineup":team_lineup,
-                        "coach":team_coach
+                        "coach":{
+                                "id": team_coach_id,
+                                "nickname":team_coach
+                             }
                  },
                  "vrs":{
                         "vrs_date":vrs_date,
