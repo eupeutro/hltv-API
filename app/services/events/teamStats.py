@@ -26,9 +26,10 @@ class HLTVEventTeamStats(HLTVBase):
             
             #lineup
             team_lineup = self.get_all_by_xpath(Events.EventTeamStats.TEAM_LINEUP.format(team_id = self.team_id))
-            team_player_url= self.get_all_by_xpath(Events.EventTeamStats.TEAM_PLAYER_URL)
+            team_player_url= self.get_all_by_xpath(Events.EventTeamStats.TEAM_PLAYER_URL.format(team_id = self.team_id))
             team_coach = self.get_text_by_xpath(Events.EventTeamStats.TEAM_COACH.format(team_id = self.team_id))
-            team_coach_url = self.get_text_by_xpath(Events.EventTeamStats.TEAM_COACH_URL)
+            team_coach_url = f"http://www.hltv.org{self.get_text_by_xpath(Events.EventTeamStats.TEAM_COACH_URL.format(team_id = self.team_id))}"
+
 
 
             #vrs
@@ -43,11 +44,24 @@ class HLTVEventTeamStats(HLTVBase):
             prize = clear_number_str(self.get_text_by_xpath(Events.EventTeamStats.PRIZE.format(team_id = self.team_id)))
             prize_club_share = clear_number_str(self.get_text_by_xpath(Events.EventTeamStats.PRIZE_CLUB_SHARE.format(team_id = self.team_id)))
             
+            lineup = []
+
+            for (nickname, url) in zip(team_lineup, team_player_url):
+                 player_id = extract_from_url(url, 'id')
+                 
+                 lineup.append({
+                      "id": player_id,
+                      "nickname": nickname,
+                      "event_stats":  f"https://www.hltv.org/stats/players/{player_id}/who?event={self.event_id}"
+                 })
+            if team_coach_url: 
+                 team_coach_id = extract_from_url(team_coach_url, 'id')
+
             eventStats = {
                  "team_placement": team_placement,
                  "qualify_method": qualify_method,
                  "lineup":{
-                        "lineup":team_lineup,
+                        "lineup":lineup,
                         "coach":{
                                 "id": team_coach_id,
                                 "nickname":team_coach
