@@ -4,9 +4,11 @@ from fastapi import APIRouter, HTTPException
 
 from app.schemas.events.search import EventsSearch
 from app.schemas.events.profile import EventProfile
+from app.schemas.events.teamStats import EventTeamStats
 
 from app.services.events.search import HLTVEventsSearch
 from app.services.events.profile import HLTVEventProfile
+from app.services.events.teamStats import HLTVEventTeamStats
 
 router = APIRouter()
 
@@ -21,3 +23,9 @@ def get_event_profile(event_id: str):
     hltv = HLTVEventProfile(event_id=event_id)
     event_info = hltv.get_event_profile()
     return event_info
+
+@router.get("/{event_id}/team/{team_id}/stats", response_model= HLTVEventTeamStats)
+def get_team_event_stats(event_id: str, team_id: str):
+    hltv = HLTVEventTeamStats(event_id=event_id, team_id= team_id)
+    team_stats = hltv.get_team_event_stats()
+    return team_stats
