@@ -58,15 +58,13 @@ class HLTVEventTeamStats(HLTVBase):
                  team_coach_id = extract_from_url(team_coach_url, 'id')
 
             eventStats = {
-                 "team_placement": team_placement,
-                 "qualify_method": qualify_method,
-                 "lineup":{
-                        "lineup":lineup,
-                        "coach":{
-                                "id": team_coach_id,
-                                "nickname":team_coach
-                             }
-                 },
+                "team_placement": team_placement,
+                "qualify_method": qualify_method,
+                "lineup":lineup,
+                "coach":[{
+                    "id": team_coach_id,
+                    "nickname":team_coach
+                }],
                  "vrs":[{
                         "vrs_date":vrs_date,
                         "points_before_event": vrs_points_before_event,
@@ -75,14 +73,13 @@ class HLTVEventTeamStats(HLTVBase):
                         "placement_before_event": vrs_placement_before_event,
                         "placement_after_event": vrs_placement_after_event
                  }],
-                 "prize":{
+                 "prize":[{
                       "prize": prize,
-                      "club_share":prize_club_share
-                 }
+                      "club_share":prize_club_share if prize_club_share else None
+                 }]
             }
 
             self.response ["team_id"] = self.team_id
             self.response ["event_id"] = self.event_id
             self.response ["stats"] = eventStats
-
             return self.response
