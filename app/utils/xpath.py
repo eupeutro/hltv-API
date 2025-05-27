@@ -149,14 +149,14 @@ class Events:
         TEAM_PLAYER_URL = "//div[contains(@class, 'team-box') and .//a[contains(@href, '/team/{team_id}/')]]//div[contains(@class, 'lineup-box')]//div[contains(@class , 'flag-align player')]//a/@href"
         TEAM_COACH = "//div[contains(@class, 'team-box') and .//a[contains(@href, '/team/{team_id}/')]]//div[contains(@class,'coach-text')]/parent::div//div[contains(@class, 'flag-align player')]//text()"
         TEAM_COACH_URL = "//div[contains(@class, 'team-box') and .//a[contains(@href, '/team/{team_id}/')]]//div[contains(@class,'coach-text')]/parent::div//div[contains(@class, 'flag-align player')]//a/@href"
-        QUALIFY_METHOD = "//div[contains(@class, 'team-box') and .//a[contains(@href, '/team/{team_id}/')]]//div[contains(@class, 'sub-text event-text')]"
+        QUALIFY_METHOD = "//div[contains(@class, 'team-box') and .//a[contains(@href, '/team/{team_id}/')]]//div[contains(@class, 'sub-text event-text')]//text()"
         
         
         #'vrs ranking' box
         VRS_DATE = "//th[contains(text(), 'VRS date')]/following-sibling::td//span"
         VRS_POINTS_BEFORE_EVENT = "//tbody[contains(@class, 'vrs-before')][.//a[contains(@href, '/team/{team_id}/')]]//tr[.//a[contains(@href, '/team/{team_id}/')]]/td[@class='vrs-points']/div[@class='start-only']//div"
         VRS_POINTS_AFTER_EVENT = "//tbody[contains(@class, 'vrs-after')][.//a[contains(@href, '/team/{team_id}/')]]//tr[.//a[contains(@href, '/team/{team_id}/')]]/td[@class='vrs-points']/div[@class='start-only']//div"
-        VRS_POINTS_ACQUIRED = "//tbody[contains(@class, 'vrs-after')][.//a[contains(@href, '/team/{team_id}/')]]//tr[.//a[contains(@href, '/team/{team_id}/')]]/td[@class='vrs-points']/div[@class='finished-only']//div[@class = 'finished-points positive']"
+        VRS_POINTS_ACQUIRED = "//tbody[contains(@class, 'vrs-after')][.//a[contains(@href, '/team/{team_id}/')]]//tr[.//a[contains(@href, '/team/{team_id}/')]]/td[@class='vrs-points']/div[@class='finished-only']//div[contains(@class, 'finished-points')]"
         VRS_PLACEMENT_BEFORE_EVENT = "//tbody[contains(@class, 'vrs-before')][.//a[contains(@href, '/team/{team_id}/')]]//tr[.//a[contains(@href, '/team/{team_id}/')]]/td[@class = 'vrs-placements']//div[@class = 'start-only']//div[@class = 'vrs-placement-btn']"
         VRS_PLACEMENT_AFTER_EVENT = "//tbody[contains(@class, 'vrs-after')][.//a[contains(@href, '/team/{team_id}/')]]//tr[.//a[contains(@href, '/team/{team_id}/')]]/td[@class = 'vrs-placements']//div[@class = 'start-only']//div[@class = 'vrs-placement-btn']"
 
