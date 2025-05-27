@@ -17,8 +17,8 @@ if __name__ == "__main__":
 
     query = "pro league"
     
-    team_id = "9565"  # ID do jogador
-    event_id = "8037"
+    team_id = "7020"  # ID do jogador
+    event_id = "8045"
     profile = HLTVEventTeamStats(event_id=event_id, team_id= team_id)
     data = profile.get_team_event_stats()
     
