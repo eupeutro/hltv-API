@@ -67,14 +67,14 @@ class HLTVEventTeamStats(HLTVBase):
                                 "nickname":team_coach
                              }
                  },
-                 "vrs":{
+                 "vrs":[{
                         "vrs_date":vrs_date,
                         "points_before_event": vrs_points_before_event,
                         "points_after_event": vrs_points_after_event,
                         "points_acquired": vrs_points_acquired,
                         "placement_before_event": vrs_placement_before_event,
                         "placement_after_event": vrs_placement_after_event
-                 },
+                 }],
                  "prize":{
                       "prize": prize,
                       "club_share":prize_club_share
