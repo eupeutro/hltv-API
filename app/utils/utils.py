@@ -187,7 +187,7 @@ def parse_int(value: str | None, silent: bool = True) -> Optional[int]:
             return None
         raise ValueError(f"Invalid float value: '{value}'")
     
-def clear_number_str(value: str) -> str:
+def clear_number_str(value: Optional[str]) -> Optional[str]:
     """
     Clear an str to only numeric digits.
 
@@ -197,5 +197,7 @@ def clear_number_str(value: str) -> str:
     Returns:
         Clear str only with numeric digits.  
     """
-
-    return re.sub(r'\D', '', value)
+    if value:
+        return re.sub(r'\D', '', value)
+    
+    return None
