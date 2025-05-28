@@ -17,8 +17,6 @@ def trim(text: Union[list, str]) -> str:
     
     return text.strip().replace("\xa0", "")
 
-import re
-from typing import Optional
 
 def extract_from_url(hltv_url: Optional[str], element: str) -> Optional[str]:
     """
@@ -38,7 +36,8 @@ def extract_from_url(hltv_url: Optional[str], element: str) -> Optional[str]:
     patterns = {
        "player": r"/player/(?P<id>\d+)(?:/(?P<nickname>[\w\-]+))?",
         "team": r"/team/(?P<id>\d+)(?:/(?P<team_name>[\w\-]+))?",
-        "event": r"/events/(?P<id>\d+)(?:/(?P<event_name>[\w\-]+))?"
+        "event": r"/events/(?P<id>\d+)(?:/(?P<event_name>[\w\-]+))?",
+        "coach": r"/coach/(?P<id>\d+)(?:/(?P<nickname>[\w\-]+))?"
     }
     
     
@@ -187,3 +186,18 @@ def parse_int(value: str | None, silent: bool = True) -> Optional[int]:
         if silent:
             return None
         raise ValueError(f"Invalid float value: '{value}'")
+    
+def clear_number_str(value: Optional[str]) -> Optional[str]:
+    """
+    Clear an str to only numeric digits.
+
+    Args:
+        value (str): The string to clear
+
+    Returns:
+        Clear str only with numeric digits.  
+    """
+    if value:
+        return re.sub(r'\D', '', value)
+    
+    return None
