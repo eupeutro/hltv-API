@@ -118,6 +118,7 @@ class Players:
 
 class Events:
     class EventProfile:
+        EVENT_URL = "//div[@class ='event-hub']//a/@href"
         EVENT_NAME = "//h1[contains(@class, 'event-hub-title')]/text()"
         TEAM_COUNT = "//td[contains(@class,'teamsNumber')]/text()"
         EVENT_START_DATE = "//th[contains(text(), 'Start date')]/parent::tr/td/span/text()"
