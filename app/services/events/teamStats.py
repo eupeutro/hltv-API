@@ -6,18 +6,35 @@ from app.utils.xpath import Events
 
 @dataclass
 class HLTVEventTeamStats(HLTVBase):
+    """
+    A class for extract stats from a team in an specific event.
+
+    Attributes:
+        event_id (str): The HLTV event id.
+        team_id (str): The HLTV team id.
+    """
     event_id: str
     team_id: str
 
     def __post_init__(self) -> None:
+        """
+        Initializes the base class, sets the URL to the player stats tab, 
+        sends the request and check if the page is valid.
 
+        """
         HLTVBase.__init__(self)
         url = f"https://www.hltv.org/events/{self.event_id}/who"
         self.URL = url
         self.page = self.request_url_page()
-
+        self.raise_exception_if_not_found(xpath=Events.EventProfile.EVENT_URL)
     def get_team_event_stats(self) -> dict:
-            
+            """
+            Parses and returns the team stats in an specific event.
+
+            Returns:
+                dict: A dictionary containing the team unique identifier, stats at the event, and the timestamp of when
+                the data was last updated.
+            """
 
             #placement
             team_placement = self.get_text_by_xpath(Events.EventTeamStats.TEAM_PLACEMENT.format(team_id = self.team_id))
