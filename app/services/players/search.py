@@ -65,7 +65,7 @@ class HLTVPlayerSearch(HLTVBase):
             nickname = player.get("nickName")
             flag_url = player.get("flagUrl")
             nationality = extract_country_name_from_flag_url(flag_url)
-            url= f"https://www.hltv.org/{player.get('location','')}"
+            url= f"https://www.hltv.org{player.get('location','')}"
 
             results.append({
 
