@@ -167,5 +167,7 @@ class Events:
         PRIZE_CLUB_SHARE = "//div[@class = 'team' and .//a[contains(@href,'/team/{team_id}/')]]/following-sibling::div[@class='prize club-share']/text()"
         TEAM_PLACEMENT  = "//div[@class = 'team' and .//a[contains(@href,'/team/{team_id}/')]]/following-sibling::div[not(@class)]/text()"
         
-
-    
+class Teams:
+    class TeamProfile:
+        NAME = "//h1[contains(@class, 'profile-team-name')]"
+        LOGO_URL = "//div[contains(@class, 'profile-team-logo-container')]//img/@srcset"
