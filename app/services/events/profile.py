@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from app.services.base import HLTVBase
-from app.utils.utils import extract_from_url
+from app.utils.utils import extract_from_url,clear_number_str
 from app.utils.xpath import Events
 
 @dataclass
@@ -31,33 +31,27 @@ class HLTVEventProfile (HLTVBase):
 
 
         """
-        #event
+      
         event_name = self.get_text_by_xpath(Events.EventProfile.EVENT_NAME)
         team_count= self.get_text_by_xpath(Events.EventProfile.TEAM_COUNT)
         event_start_date = self.get_text_by_xpath(Events.EventProfile.EVENT_START_DATE)
         event_end_date = self.get_text_by_xpath(Events.EventProfile.EVENT_END_DATE)
-        prize_pool = self.get_text_by_xpath(Events.EventProfile.PRIZE_POOL)
+        prize_pool = clear_number_str(self.get_text_by_xpath(Events.EventProfile.PRIZE_POOL))
         event_location = self.get_text_by_xpath(Events.EventProfile.EVENT_LOCATION)
         location_flag_url = f"https://www.hltv.org{self.get_text_by_xpath(Events.EventProfile.LOCATION_FLAG_URL)}"
-        
-        #mvp
+      
         event_mvp_nickname = self.get_text_by_xpath(Events.EventProfile.EVENT_MVP_NICKNAME)
         event_mvp_url_suffix = self.get_text_by_xpath(Events.EventProfile.EVENT_MVP_URL)
         
         
-        #evps
+     
         event_evps_nickname = self.get_all_by_xpath(Events.EventProfile.EVENT_EVPS_NICKNAME)
         event_evps_url = self.get_all_by_xpath(Events.EventProfile.EVENT_EVPS_URL)
         
-        #teams
+      
         team_name = self.get_all_by_xpath(Events.EventProfile.TEAM_NAME)
         team_url = self.get_all_by_xpath(Events.EventProfile.TEAM_URL)
         team_placement = self.get_all_by_xpath(Events.EventProfile.TEAM_PLACEMENT)
-
-
-        #dentro do for:
-        #evps_id 
-        #team_id
 
 
         mvp_list = None
