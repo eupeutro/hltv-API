@@ -15,7 +15,7 @@ def trim(text: Union[list, str]) -> str:
     if isinstance(text, list):
         text = "".join(text)
     
-    return text.strip().replace("\xa0", "")
+    return text.strip().replace("\xa0", "").replace("'", "")
 
 
 def extract_from_url(hltv_url: Optional[str], element: str) -> Optional[str]:
