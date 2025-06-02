@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 
 from pydantic import HttpUrl
 
@@ -12,7 +12,7 @@ class PlayerProfile(HLTVBaseModel,AuditMixin):
     age: int
     nationality: str
     rating:Optional[float]
-    current_team: Optional[str] = None
-    current_team_url: Optional[HttpUrl] = None
-    image_url: Optional[HttpUrl] = None
-    social_media: Optional[list[str]] = None
+    current_team: Optional[str]
+    current_team_url: Optional[HttpUrl]
+    image_url: Optional[HttpUrl]
+    social_media: Optional[List[str]]
