@@ -180,3 +180,9 @@ class Teams:
         WORLD_RANKING = "//div[@class = 'profile-team-stat']//b[contains(text(), 'World ranking')]/following::a[1]/text()"
         WEEKS_IN_TOP30_FOR_CORE = "//div[@class = 'profile-team-stat'][.//b[contains(text(), 'Weeks in top30 for core')]]//span[@class = 'right']"
         AVERAGE_PLAYER_AGE = "//div[@class = 'profile-team-stat'][.//b[contains(text(), 'Average player age')]]//span[@class = 'right']"
+
+    class Achievements:
+        PLACEMENT = "//tr[@class='team']//div[contains(@class, 'achievement')][.//i[contains(@class, 'fa-trophy')]]/text()"
+        TOURNAMENT_NAME = ".//td[contains(@class, 'tournament-name-cell')]/a/text()"
+        TOURNAMENT_URL = ".//td[contains(@class, 'tournament-name-cell')]/a/@href"
+        
