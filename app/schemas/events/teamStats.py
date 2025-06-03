@@ -26,7 +26,7 @@ class lineupDetails(HLTVBaseModel):
     event_stats: HttpUrl
 
 
-class eventTeamStatsDetails(HLTVBaseModel):
+class eventTeamStatsDetails(HLTVBaseModel, AuditMixin):
     team_placement: str
     prize: Optional[List[prizeDetails]]
     vrs: Optional[List[vrsDetails]]
