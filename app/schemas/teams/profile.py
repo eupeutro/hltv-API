@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from pydantic import HttpUrl
 
-from app.schemas.base import HLTVBaseModel
+from app.schemas.base import HLTVBaseModel, AuditMixin
 
 class CoachDetails(HLTVBaseModel):
     id: str
@@ -24,6 +24,6 @@ class TeamProfileDetails(HLTVBaseModel):
     logo_url: HttpUrl
     social_media: Optional[List[HttpUrl]]
 
-class TeamProfile(HLTVBaseModel):
+class TeamProfile(HLTVBaseModel, AuditMixin):
     id: str
     team_profile: Optional[TeamProfileDetails]
