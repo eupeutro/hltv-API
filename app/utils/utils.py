@@ -1,5 +1,7 @@
 import re
+
 from typing import Optional , Union
+from datetime import datetime
 
 def trim(text: Union[list, str]) -> str:
     """
@@ -201,3 +203,11 @@ def clear_number_str(value: Optional[str]) -> Optional[str]:
         return re.sub(r'\D', '', value)
     
     return None
+
+def parse_date (date: str) -> str:
+
+    clean_str = re.sub(r'(\d+)(st|nd|rd|th)', r'\1', date)
+
+    parsed_date = datetime.strptime(clean_str, '%B %d %Y')
+
+    return parsed_date.strftime('%Y-%m-%d')
