@@ -206,8 +206,14 @@ def clear_number_str(value: Optional[str]) -> Optional[str]:
 
 def parse_date (date: str) -> str:
 
-    clean_str = re.sub(r'(\d+)(st|nd|rd|th)', r'\1', date)
+    match =  re.search(r'([A-Z][a-z]+) (\d{1,2})(?:st|nd|rd|th)?[,\s]+(\d{4})', date)
 
-    parsed_date = datetime.strptime(clean_str, '%B %d %Y')
+    if match:
+        month, day, year = match.groups()
+        try:
+            parsed_date = datetime.strptime(f'{month} {day} {year}', '%B %d %Y')
+            return parsed_date.strftime('%Y-%m-%d')
+        except ValueError:
+            return None
 
-    return parsed_date.strftime('%Y-%m-%d')
+    return None
