@@ -191,7 +191,7 @@ class Ranking:
         RANKING_DATE = "//div[@class = 'regional-ranking-header-text']"
         TEAM_NAME = "//div[contains(@class , 'teamLine sectionTeamPlayers')]//span[@class = 'name']/text()"
         TEAM_URL = "//div[@class = 'more']//a[@class = 'moreLink']/@href"
-        TEAM_LOGO_URL = "//div[@class='bg-holder']//span[@class='team-logo']/img[not(contains(@class, 'day-only')) and (contains(@class, 'night-only') or not(@class))][1]"
+        TEAM_LOGO_URL = "//div[@class='bg-holder']//span[@class='team-logo']/img[not(contains(@class, 'day-only')) and (contains(@class, 'night-only') or not(@class))][1]/@src"
         PLAYER_NICKNAME = "//td[@class = 'player-holder']//div[@class = 'nick']/text()"
         PLAYER_PICTURE_URL = "//td[@class = 'player-holder']//img[@class = 'playerPicture']/@src"
         PLAYER_URL =  "//td[@class = 'player-holder']//a[@class = 'pointer']/@href"
