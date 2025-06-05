@@ -13,7 +13,7 @@ class HLTVRankingStats(HLTVBase):
         self.URL = url
         self.page = self.request_url_page()
 
-    def __parse_team_achievements_(self) -> list:
+    def __parse_ranking_stats_(self) -> list:
 
 
         team_name = self.get_all_by_xpath(Ranking.Stats.TEAM_NAME)
@@ -21,35 +21,52 @@ class HLTVRankingStats(HLTVBase):
         team_logo_url = self.get_all_by_xpath(Ranking.Stats.TEAM_LOGO_URL)
         
         player_nickname = self.get_all_by_xpath(Ranking.Stats.PLAYER_NICKNAME)
-        player_picture_url = self.get_all_by_xpath(Ranking.Stats.PLAYER_PICTURE_URL)
         player_url = self.get_all_by_xpath(Ranking.Stats.PLAYER_URL)
         player_nationality = self.get_all_by_xpath(Ranking.Stats.PLAYER_NATIONALITY)
-
-        hltv_points = self.get_all_by_xpath(Ranking.Stats.HLTV_POINTS)
+        player_picture_url = self.get_all_by_xpath(Ranking.Stats.PLAYER_PICTURE_URL)
+    
+        #hltv_points = self.get_all_by_xpath(Ranking.Stats.HLTV_POINTS)
         placements = self.get_all_by_xpath(Ranking.Stats.PLACEMENT)
 
-        ranking = []
+        
 
-        for (name, t_url, logo_url,nickname,picture_url, p_url, nationality, points, placement) in zip(team_name, team_url, team_logo_url, player_nickname, player_picture_url, player_url, player_nationality, hltv_points, placements):
+        #nickname, picture_url, p_url, nationality, 
+        #player_nickname, player_picture_url, player_url, player_nationality
+        #player_id = extract_from_url(p_url, 'id')
+
+        lineup = []
+        for (nickname, p_url, nationality, picture_url) in zip(player_nickname, player_url, player_nationality, player_picture_url):
+            player_id = extract_from_url( p_url , 'id')
+            
+            lineup.append({
+                "player_id": player_id,
+                "nickname": nickname,
+                "nationality": nationality,
+                "picture_url": picture_url
+            })
+
+        ranking = []
+        for (name, t_url, logo_url, placement) in zip(team_name, team_url, team_logo_url, placements):
             team_id = extract_from_url(t_url, 'id')
-            player_id = extract_from_url(p_url, 'id')
+            
 
             ranking.append({
                 "team_id": team_id,
                 "team_name": name,
                 "placement": placement,
-                "hltv_points": points,
-                "lineup":{ 
-                    "player_id": player_id,
-                    "nickname": nickname,
-                    "nationality": nationality,
-                    "picture_url": picture_url
-                },
+                #"hltv_points": points,
+                "lineup": lineup,
                 "logo_url": logo_url,
             })
+            
+
+        return ranking
+
     def get_ranking_stats(self) -> dict:
         ranking_date = self.get_text_by_xpath(Ranking.Stats.RANKING_DATE)
 
 
         self.response["ranking_date"] = parse_date(ranking_date)
-        self.response["ranking_stats"] = self.__parse_team_achievements_()
+        self.response["ranking_stats"] = self.__parse_ranking_stats_()
+
+        return self.response
