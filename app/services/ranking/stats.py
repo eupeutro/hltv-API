@@ -14,34 +14,37 @@ class HLTVRankingStats(HLTVBase):
         self.page = self.request_url_page()
 
     def __parse_ranking_stats_(self) -> list:
-        team_row = self.get_all_by_xpath(Ranking.Stats.TEAM_ROW)
+        team_row = self.get_elements_by_xpath(Ranking.Stats.TEAM_ROW)
 
         ranking = []
         for team in team_row:
-            try:
-                team_name = self.get_text_by_xpath(Ranking.Stats.TEAM_NAME, element = team)
-                team_url = self.get_text_by_xpath(Ranking.Stats.TEAM_URL, element = team)
-                team_logo_url = self.get_text_by_xpath(Ranking.Stats.TEAM_LOGO_URL, element = team)
-                placement = self.get_text_by_xpath(Ranking.Stats.PLACEMENT, element = team)
-                team_id = extract_from_url(team_url, 'id')
-                hltv_points = clear_number_str(self.get_all_by_xpath(Ranking.Stats.HLTV_POINTS))
-            except IndexError:
-                continue
+        
+            team_name = self.get_text_by_xpath(Ranking.Stats.TEAM_NAME, element = team)
+            team_url = self.get_text_by_xpath(Ranking.Stats.TEAM_URL, element = team)
+            team_logo_url = self.get_text_by_xpath(Ranking.Stats.TEAM_LOGO_URL, element = team)
+            placement = self.get_text_by_xpath(Ranking.Stats.PLACEMENT, element = team)
+            team_id = extract_from_url(team_url, 'id')
+            hltv_points = clear_number_str(self.get_text_by_xpath(Ranking.Stats.HLTV_POINTS))
 
-            player_nickname = self.get_text_by_xpath(Ranking.Stats.PLAYER_NICKNAME, element = team)
-            player_url = self.get_text_by_xpath(Ranking.Stats.PLAYER_URL, element = team)
-            player_nationality = self.get_text_by_xpath(Ranking.Stats.PLAYER_NATIONALITY, element = team)
-            player_picture_url = self.get_text_by_xpath(Ranking.Stats.PLAYER_PICTURE_URL, element = team)
+
+            
+            player_row = self.get_elements_by_xpath(Ranking.Stats.PLAYER_ROW, element = team)
             lineup = []
             
-            for nickname, p_url, nationality, picture_url in zip(player_nickname, player_url, player_nationality, player_picture_url):
-                player_id = extract_from_url( p_url , 'id')
+            for player in player_row:
+
+                player_nickname = self.get_text_by_xpath(Ranking.Stats.PLAYER_NICKNAME, element = player)
+                player_url = self.get_text_by_xpath(Ranking.Stats.PLAYER_URL, element = player)
+                player_nationality = self.get_text_by_xpath(Ranking.Stats.PLAYER_NATIONALITY, element = player)
+                player_picture_url = self.get_text_by_xpath(Ranking.Stats.PLAYER_PICTURE_URL, element = player)
+                
+                player_id = extract_from_url( player_url , 'id')
             
                 lineup.append({
                     "player_id": player_id,
-                    "nickname": nickname,
-                    "nationality": nationality,
-                    "picture_url": picture_url
+                    "nickname": player_nickname,
+                    "nationality": player_nationality,
+                    "picture_url": player_picture_url
             })
                 
             ranking.append({
