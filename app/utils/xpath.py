@@ -188,6 +188,7 @@ class Teams:
 
 class Ranking:
     class Stats:
+        TEAM_ROW = "//div[contains(@class, 'ranked-team')]"
         RANKING_DATE = "//div[@class = 'regional-ranking-header-text']"
         TEAM_NAME = "//div[contains(@class , 'teamLine sectionTeamPlayers')]//span[@class = 'name']/text()"
         TEAM_URL = "//div[@class = 'more']//a[@class = 'moreLink']/@href"
