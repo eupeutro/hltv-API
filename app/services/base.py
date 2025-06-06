@@ -208,3 +208,25 @@ class HLTVBase:
 
         if not self.get_text_by_xpath(xpath):
             raise HTTPException(status_code = 404, detail=f"Invalid request (url: {self.URL})")
+        
+    
+    def get_elements_by_xpath(self, xpath: str, element = None) -> list[etree._Element]:
+        """
+    Extract all matching elements from the page or a given element using the provided XPath expression.
+
+    Args:
+        xpath (str): The XPath expression to evaluate.
+        element (etree._Element, optional): The base element to search within. If None, uses the full page.
+
+    Returns:
+        list[etree._Element]: A list of lxml elements that match the XPath.
+
+    Raises:
+        ValueError: If the XPath evaluation fails.
+        """
+        
+        base = element if element is not None else self.page
+        try:
+            return base.xpath(xpath)
+        except Exception as e:
+            raise ValueError(f"Error at xpath elements extract '{xpath}': {e}") from e
