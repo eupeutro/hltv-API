@@ -186,6 +186,9 @@ class Teams:
         TOURNAMENT_NAME = ".//td[contains(@class, 'tournament-name-cell')]/a/text()"
         TOURNAMENT_URL = ".//td[contains(@class, 'tournament-name-cell')]/a/@href"
 
+    class UpcomingMatches:
+        UPCOMING_MATCHES_ROW = "//h2[@class = 'standard-headline' and contains(text(), 'Upcoming matches')]/following::table[@class = 'table-container match-table'][1]"
+        EVENT_NAME = "//tr[@class = 'event-header-cell']//th[@class = 'text-ellipsis']//a/text()"
 class Ranking:
     class Stats:
         TEAM_ROW = "//div[contains(@class, 'ranked-team')]"
