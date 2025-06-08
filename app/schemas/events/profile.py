@@ -25,7 +25,7 @@ class EventProfileDetail(HLTVBaseModel):
     start_date: str
     end_date: str
     team_count: int
-    prize_pool: str
+    prize_pool: int
     location: str
     location_flag_url: HttpUrl
     mvp: Optional[List[EventMvpDetail]]

@@ -171,7 +171,32 @@ class Teams:
     class TeamProfile:
         NAME = "//h1[contains(@class, 'profile-team-name')]"
         LOGO_URL = "//div[contains(@class, 'profile-team-logo-container')]//img/@srcset"
-        PLAYER_NICKNAME= "//div[contains(@class, 'playerFlagName')]//span[contains(@class,'text-ellipsis bold')]"
+        PLAYER_NICKNAME= "//div[contains(@class, 'playerFlagName')]//span[contains(@class,'text-ellipsis bold')]/text()"
         PLAYER_URL = "//div[contains(@class,'teamProfile')]//a[contains(@class, 'col-custom')]/@href"
+        COACH_NICKNAME = "//div[@class = 'profile-team-stat'][.//b[contains(text(), 'Coach')]]//span[@class = 'bold a-default']"
+        COACH_URL = "//div[@class = 'profile-team-stat'][.//b[contains(text(), 'Coach')]]//a/@href"
         SOCIAL_MEDIA ="//div[@class = 'socialMediaButtons']//a/@href"
-        VALVE_RANKING = "//div[contains(@class, 'profile-team-stat')]//div[contains(@class, 'regional-wrapper')]//b[contains(text(), 'Valve ranking')]/following-sibling::span[contains(@class, 'right')]//a/text()"
+        VALVE_RANKING = "//div[@class = 'regional-wrapper']//b[contains(text(), 'Valve ranking')]/following::a[1]/text()"
+        WORLD_RANKING = "//div[@class = 'profile-team-stat']//b[contains(text(), 'World ranking')]/following::a[1]/text()"
+        WEEKS_IN_TOP30_FOR_CORE = "//div[@class = 'profile-team-stat'][.//b[contains(text(), 'Weeks in top30 for core')]]//span[@class = 'right']"
+        AVERAGE_PLAYER_AGE = "//div[@class = 'profile-team-stat'][.//b[contains(text(), 'Average player age')]]//span[@class = 'right']"
+
+    class Achievements:
+        PLACEMENT = "//tr[@class='team']//div[contains(@class, 'achievement')][.//i[contains(@class, 'fa-trophy')]]/text()"
+        TOURNAMENT_NAME = ".//td[contains(@class, 'tournament-name-cell')]/a/text()"
+        TOURNAMENT_URL = ".//td[contains(@class, 'tournament-name-cell')]/a/@href"
+
+class Ranking:
+    class Stats:
+        TEAM_ROW = "//div[contains(@class, 'ranked-team')]"
+        RANKING_DATE = "//div[@class = 'regional-ranking-header-text']"
+        TEAM_NAME = ".//div[contains(@class , 'teamLine sectionTeamPlayers')]//span[@class = 'name']/text()"
+        TEAM_URL = ".//div[@class = 'more']//a[@class = 'moreLink']/@href"
+        TEAM_LOGO_URL = ".//div[@class='bg-holder']//span[@class='team-logo']/img[not(contains(@class, 'day-only')) and (contains(@class, 'night-only') or not(@class))][1]/@src"
+        PLAYER_ROW = ".//table[@class='lineup']//td[@class='player-holder']"
+        PLAYER_NICKNAME = ".//div[@class='nick']/text()"
+        PLAYER_PICTURE_URL = ".//img[@class='playerPicture']/@src"
+        PLAYER_URL = ".//a[@class='pointer']/@href"
+        PLAYER_NATIONALITY = ".//div[@class='nick']/img/@alt"
+        HLTV_POINTS = ".//div[@class = 'bg-holder']//div[contains(@class , 'teamLine sectionTeamPlayers')]//span[@class = 'points']/text()[1]"
+        PLACEMENT = ".//div[@class = 'bg-holder']//div[@class = 'ranking-header']//span[@class = 'position wide-position']/text()"

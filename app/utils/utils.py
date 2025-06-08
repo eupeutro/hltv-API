@@ -1,5 +1,7 @@
 import re
+
 from typing import Optional , Union
+from datetime import datetime
 
 def trim(text: Union[list, str]) -> str:
     """
@@ -15,7 +17,7 @@ def trim(text: Union[list, str]) -> str:
     if isinstance(text, list):
         text = "".join(text)
     
-    return text.strip().replace("\xa0", "")
+    return text.strip().replace("\xa0", "").replace("'", "")
 
 
 def extract_from_url(hltv_url: Optional[str], element: str) -> Optional[str]:
@@ -200,4 +202,18 @@ def clear_number_str(value: Optional[str]) -> Optional[str]:
     if value:
         return re.sub(r'\D', '', value)
     
+    return None
+
+def parse_date (date: str) -> str:
+
+    match =  re.search(r'([A-Z][a-z]+) (\d{1,2})(?:st|nd|rd|th)?[,\s]+(\d{4})', date)
+
+    if match:
+        month, day, year = match.groups()
+        try:
+            parsed_date = datetime.strptime(f'{month} {day} {year}', '%B %d %Y')
+            return parsed_date.strftime('%Y-%m-%d')
+        except ValueError:
+            return None
+
     return None
