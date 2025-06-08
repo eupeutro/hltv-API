@@ -167,5 +167,11 @@ class Events:
         PRIZE_CLUB_SHARE = "//div[@class = 'team' and .//a[contains(@href,'/team/{team_id}/')]]/following-sibling::div[@class='prize club-share']/text()"
         TEAM_PLACEMENT  = "//div[@class = 'team' and .//a[contains(@href,'/team/{team_id}/')]]/following-sibling::div[not(@class)]/text()"
         
-
-    
+class Teams:
+    class TeamProfile:
+        NAME = "//h1[contains(@class, 'profile-team-name')]"
+        LOGO_URL = "//div[contains(@class, 'profile-team-logo-container')]//img/@srcset"
+        PLAYER_NICKNAME= "//div[contains(@class, 'playerFlagName')]//span[contains(@class,'text-ellipsis bold')]"
+        PLAYER_URL = "//div[contains(@class,'teamProfile')]//a[contains(@class, 'col-custom')]/@href"
+        SOCIAL_MEDIA ="//div[@class = 'socialMediaButtons']//a/@href"
+        VALVE_RANKING = "//div[contains(@class, 'profile-team-stat')]//div[contains(@class, 'regional-wrapper')]//b[contains(text(), 'Valve ranking')]/following-sibling::span[contains(@class, 'right')]//a/text()"
