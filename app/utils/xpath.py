@@ -188,7 +188,17 @@ class Teams:
 
     class UpcomingMatches:
         UPCOMING_MATCHES_ROW = "//h2[@class = 'standard-headline' and contains(text(), 'Upcoming matches')]/following::table[@class = 'table-container match-table'][1]"
-        EVENT_NAME = "//tr[@class = 'event-header-cell']//th[@class = 'text-ellipsis']//a/text()"
+        MATCH_URL = "//td[@class = 'matchpage-button-cell']//a/@href"
+        
+        EVENT_NAME = "//div[@class = 'timeAndEvent']//div[@class = 'event text-ellipsis']//a/text()"
+        EVENT_URL = "//div[@class = 'timeAndEvent']//div[@class = 'event text-ellipsis']//a/@href"
+        MATCH_DATE = "//div[@class = 'timeAndEvent']//div[@class = 'date']/text()"
+        MATCH_HOUR = "//div[@class = 'timeAndEvent']//div[@class = 'time']/text()"
+        RIVAL_TEAM_NAME = "//div[@class = 'team2-gradient']//a//div[@class = 'teamName']/text()"
+        RIVAL_TEAM_URL = "//div[@class = 'team-flex '][2]//a[@class = 'team-name team-2']/@href"
+        MATCH_TYPE = "//div[@class = 'standard-box veto-box']//div[@class = 'padding preformatted-text']/text()"
+
+        
 class Ranking:
     class Stats:
         TEAM_ROW = "//div[contains(@class, 'ranked-team')]"
