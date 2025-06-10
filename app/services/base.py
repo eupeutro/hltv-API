@@ -65,7 +65,7 @@ class HLTVBase:
             )
         return response
     
-    def request_url_bsoup(self) -> BeautifulSoup:
+    def request_url_bsoup(self, url:Optional[str] = None) -> BeautifulSoup:
         """
         Fetch the web page content and parse it using BeautifulSoup.
 
@@ -77,7 +77,7 @@ class HLTVBase:
                 server error status code.
         """
 
-        response: Response = self.make_request()
+        response: Response = self.make_request(url)
         return BeautifulSoup(markup=response.content, features="html.parser")
     
     @staticmethod
@@ -94,7 +94,7 @@ class HLTVBase:
 
         return etree.HTML(str(bsoup))
     
-    def request_url_page(self) -> ElementTree:
+    def request_url_page(self, url: Optional[str] = None) -> ElementTree:
         """
         Fetch the web page content, parse it using BeautifulSoup, and convert it to an ElementTree.
 
@@ -106,7 +106,7 @@ class HLTVBase:
             HTTPException: If there are too many redirects, or if the server returns a client or
                 server error status code.
         """
-        bsoup: BeautifulSoup = self.request_url_bsoup()
+        bsoup: BeautifulSoup = self.request_url_bsoup(url)
         return self.convert_bsoup_to_page(bsoup=bsoup)
     
     def get_all_by_xpath(self,xpath: str, element = None) -> list[str]:
