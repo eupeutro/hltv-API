@@ -39,7 +39,8 @@ def extract_from_url(hltv_url: Optional[str], element: str) -> Optional[str]:
        "player": r"/player/(?P<id>\d+)(?:/(?P<nickname>[\w\-]+))?",
         "team": r"/team/(?P<id>\d+)(?:/(?P<team_name>[\w\-]+))?",
         "event": r"/events/(?P<id>\d+)(?:/(?P<event_name>[\w\-]+))?",
-        "coach": r"/coach/(?P<id>\d+)(?:/(?P<nickname>[\w\-]+))?"
+        "coach": r"/coach/(?P<id>\d+)(?:/(?P<nickname>[\w\-]+))?",
+        "match": r"/matches/(?P<id>\d+)(?:/(?P<match_name>[\w\-]+))"
     }
     
     
